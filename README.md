@@ -1,7 +1,7 @@
 ﻿Resumo
 Esse projeto tem por objetivo desenvolver uma aplicação que suporte o ciclo de vida de projetos scrum, servindo como uma ferramenta para a gestão e suporte a execução de projetos.
 A aplicação é web, de forma que o usuário tenha flexibilidade para acessar o sistema de qualquer localidade rapidamente.
-Principais tecnologias utilizadas: Java, Spring Boot, Bootstrap, REST
+Principais tecnologias utilizadas: Java, Spring Boot, JSTL, Bootstrap, REST
 
 
 Especificação
@@ -21,5 +21,51 @@ Casos de Uso
 Diagrama de Casos de Uso
 
 
+MVP
+Prioridade
+Caso de Uso
+Esforço
+Sprint
+1
+1 – Cadastrar Projeto
+
+1
+2
+4 - Criar e editar o Product Backlog
+
+1
+3
+5 – Registrar Sprint Backlog
+
+1
+4
+8 - Acompanhar métricas do projeto
+
+2
+5
+7 - Registrar Plano Diário
+
+3
+6
+9 - Registrar Sprint Review Meeting
+
+3
+7
+10 - Registrar Sprint Retrospective
+
+3
+8
+2 - Encerrar ou Cancelar Projeto
+
+4
+9
+3 - Cadastrar Equipe
+
+4
+
 Diagrama de Classes
+
+
+Kanban do Projeto
+https://trello.com/b/uF14fkVn/scrum-app
 
