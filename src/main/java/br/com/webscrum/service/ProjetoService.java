@@ -15,7 +15,10 @@ public class ProjetoService {
 	ProjetoRepository projetoRepository;
 
 	public List<Projeto> getAll() {
-
 		return projetoRepository.findAll();
+	}
+
+	public void add(Projeto projeto) {
+		projetoRepository.save(projeto);
 	}
 }
