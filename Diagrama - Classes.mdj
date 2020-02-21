@@ -271,7 +271,7 @@
 											"top": 431,
 											"width": 163.3125,
 											"height": 13,
-											"text": "+encerrarProjeto(): void",
+											"text": "+encerrarProjeto(): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1932,9 +1932,9 @@
 										"$ref": "AAAAAAFwNxeOvmDQnqw="
 									},
 									"font": "Arial;13;0",
-									"left": 803,
+									"left": 802,
 									"top": 361,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2203,9 +2203,9 @@
 										"$ref": "AAAAAAFwNxhm9mHH8D0="
 									},
 									"font": "Arial;13;0",
-									"left": 1038,
+									"left": 1037,
 									"top": 347,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -3368,9 +3368,9 @@
 										"$ref": "AAAAAAFwNx8m62lAYIs="
 									},
 									"font": "Arial;13;0",
-									"left": 342,
+									"left": 341,
 									"top": 448,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -3979,9 +3979,9 @@
 										"$ref": "AAAAAAFwNzoB8IV1wkg="
 									},
 									"font": "Arial;13;0",
-									"left": 474,
+									"left": 473,
 									"top": 642,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -4312,9 +4312,9 @@
 										"$ref": "AAAAAAFwNz2FXJBlOXw="
 									},
 									"font": "Arial;13;0",
-									"left": 655,
+									"left": 654,
 									"top": 792,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4532,7 +4532,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFwNro2nl7n040="
 									},
-									"type": "void",
+									"type": "boolean",
 									"direction": "return"
 								}
 							]
