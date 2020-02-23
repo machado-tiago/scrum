@@ -15,6 +15,8 @@ public class Projeto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_proj;
+
+	@javax.validation.constraints.NotEmpty
 	private String nome;
 	private String objetivo;
 	private String status;
@@ -36,8 +38,8 @@ public class Projeto {
 		this.sprints = sprints;
 	}
 
-	public Projeto(String nome) {
-		setNome(nome);
+	public Projeto() {
+
 	}
 
 	public boolean encerrarProjeto(String status) {

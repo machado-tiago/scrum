@@ -3,17 +3,24 @@ package br.com.webscrum.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.webscrum.model.Projeto;
 
 @Repository
+@Transactional
 public class ProjetoRepository implements CrudRepository<Projeto, Integer> {
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public <S extends Projeto> S save(S entity) {
-		// TODO Auto-generated method stub
+		em.persist(entity);
 		return null;
 	}
 

@@ -11,6 +11,8 @@
 </head>
 <body>
 	<form name="addprojeto" action="<c:url value="/projeto/add" context="/"/>" method="post">
+		<span>${mensagemForm}</span>
+		<br>
 		<input type="text" id="nome" name="nome" placeholder="Nome do Projeto">
 		<input type="text" id="objetivo" name="objetivo" placeholder="Objetivo">
 		<input type="submit" id="saveProject" name="saveProject" value="Salvar">
