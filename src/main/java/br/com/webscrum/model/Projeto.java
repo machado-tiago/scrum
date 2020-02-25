@@ -51,6 +51,12 @@ public class Projeto {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Projeto: id=%s, nome=%s, objetivo=%s, status=%s, colaboradores=%s, sprints=%s]", id_proj,
+				nome, objetivo, status, colaboradores, sprints);
+	}
+
 	public void alterarStatus(String status) {
 		setStatus(status);
 	}

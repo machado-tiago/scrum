@@ -38,7 +38,8 @@ public class ProjetoController {
 			return "projeto/form";
 		} else {
 			projetoService.add(projeto);
-			attributes.addFlashAttribute("mensagemForm", "Novo Projeto Cadastrado com Sucesso!");
+			attributes.addFlashAttribute("mensagemForm",
+					"Novo Projeto Cadastrado com Sucesso!" + "\r\n" + projeto.toString());
 			return "redirect:/projeto/all";
 		}
 	}

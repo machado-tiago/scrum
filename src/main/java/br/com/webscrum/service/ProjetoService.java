@@ -19,6 +19,7 @@ public class ProjetoService {
 	}
 
 	public void add(Projeto projeto) {
+		projeto.setStatus("planejamento");
 		projetoRepository.save(projeto);
 	}
 }
