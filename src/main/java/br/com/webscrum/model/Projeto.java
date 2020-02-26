@@ -15,6 +15,7 @@ public class Projeto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_proj;
+	private double orcamento;
 
 	@javax.validation.constraints.NotEmpty
 	private String nome;
@@ -27,16 +28,6 @@ public class Projeto {
 	@Autowired
 	private List<Sprint> sprints;
 
-	public Projeto(Integer id_proj, String nome, String objetivo, String status, List<Sprint> sprints,
-			List<Colaborador> colaboradores) {
-		super();
-		this.id_proj = id_proj;
-		this.nome = nome;
-		this.objetivo = objetivo;
-		this.status = status;
-		this.colaboradores = colaboradores;
-		this.sprints = sprints;
-	}
 
 	public Projeto() {
 
@@ -53,9 +44,11 @@ public class Projeto {
 
 	@Override
 	public String toString() {
-		return String.format("Projeto: id=%s, nome=%s, objetivo=%s, status=%s, colaboradores=%s, sprints=%s]", id_proj,
-				nome, objetivo, status, colaboradores, sprints);
+		return String.format(
+				"Projeto: id=%s, nome=%s, objetivo=%s, status=%s, orcamento=%s colaboradores=%s, sprints=%s]", id_proj,
+				nome, objetivo, status, orcamento, colaboradores, sprints);
 	}
+
 
 	public void alterarStatus(String status) {
 		setStatus(status);
@@ -85,6 +78,13 @@ public class Projeto {
 		this.id_proj = id_proj;
 	}
 
+	public double getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(double orcamento) {
+		this.orcamento = orcamento;
+	}
 	public String getNome() {
 		return nome;
 	}

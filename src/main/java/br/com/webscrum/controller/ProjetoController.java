@@ -43,4 +43,5 @@ public class ProjetoController {
 			return "redirect:/projeto/all";
 		}
 	}
+
 }
