@@ -20,8 +20,8 @@
 <title>Scrum App</title>
 </head>
 <body>
-	<c:import url="/templates/nav.jsp"></c:import>
-	
+	<c:import url="../templates/nav.jsp"></c:import>
+		
 		<section class="aw-layout-content  js-content">
 			<div class="page-header">
 				<div class="container-fluid">
@@ -68,7 +68,7 @@
 				
 			</section>
 			
-	<c:import url="/templates/footer.jsp"></c:import>
+	<c:import url="../templates/footer.jsp"></c:import>
 	
 	<script type="text/javascript" src="<c:url value="/javascripts/vendors.min.js" context="/" />" > </script>
 	<script type="text/javascript" src="<c:url value="/javascripts/algaworks.min.js" context="/" />" ></script>
