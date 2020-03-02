@@ -6,12 +6,8 @@
 	<meta charset="utf-8">
 </head>
 <body>
-<div class="aw-layout-page">
-		<nav
-			class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference"
-			id="main-navbar">
+		<nav class="navbar  fixed-top  navbar-default  js-sticky-reference"	id="main-navbar">
 			<div class="container-fluid">
-
 				<div class="navbar-header">
 					<a class="navbar-brand  hidden-xs" href="#"> <img
 						alt="Scrum App" src="/layout/images/scrum-logo.png" />
@@ -56,31 +52,39 @@
 							</ul>
 						</li>
 
-						<li class="aw-menu__item  is-expanded"><a href="#"> <i
-								class="fa  fa-fw  fa-file-text"></i><span>Páginas comuns</span>
-								<i class="aw-menu__navigation-icon  fa"></i>
+						<li class="aw-menu__item  is-expanded">
+						<a href="#">
+							<i class="fa  fa-fw  fa-file-text"></i>
+							<span>Páginas comuns</span>
+							<i class="aw-menu__navigation-icon  fa"></i>
 						</a>
 
 							<ul class="aw-menu__list  aw-menu__list--sublist">
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="pagina-vazia.html">Página vazia</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="login.html">Login</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="esqueceu-a-senha.html">Esqueceu a senha</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="403.html">403</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="404.html">404</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="500.html">500</a></li>
-							</ul></li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a href="pagina-vazia.html">Página vazia</a>
+								</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a href="login.html">Login</a>
+								</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a href="esqueceu-a-senha.html">Esqueceu a senha</a>
+								</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a	href="403.html">403</a>
+								</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a href="404.html">404</a>
+								</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a	href="500.html">500</a>
+								</li>
+							</ul>
+						</li>
 
 					</ul>
 				</nav>
 			
 			</div>
 		</aside>
-	</div>
 </body>
 </html>

@@ -24,22 +24,22 @@
         	<div class="row justify-content-center m-0 p-0">
 	        	<div class="card col-8 col-lg-6">
 			          <div class="card-body">
-			            <h4 class="card-title text-center">Entrar</h4>
+			            <h4 class="card-title text-center">Login</h4>
 			            <form class="form-signin">
 			              <div class="form-group">
 			                <label for="inputEmail">Email</label>
-			                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+			                <input type="email" id="inputEmail" class="form-control" placeholder="endereço de email" required>
 			              </div>
 			              
 			              <div class="form-group">
 			                <label for="inputPassword">Senha</label>
-			                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			                <input type="password" id="inputPassword" class="form-control" placeholder="senha" required>
 			              </div>
 			              
 						  <br>
 			              <a class="btn btn-md btn-primary btn-block text-uppercase" href="<c:url value="/home" context="/" />" >Entrar</a>
 			              <hr class="my-4">
-			              <button class="btn btn-md btn-secondary btn-block text-uppercase" type="submit">Registrar</button>
+			              <button class="btn btn-md btn-secondary btn-block text-uppercase" data-toggle="modal" data-target="#cadastro-modal" type="button">Registrar</button>
 			            </form>
 			        </div>
 	      		</div>
@@ -47,7 +47,46 @@
 	    </div>
     </div>
 	</div>
+	
   	<jsp:include page="templates/footer.jsp" />
+  	
+	<div class="modal" id="cadastro-modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Cadastro</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="card-body">
+			            <form>
+			            	<div class="form-group">
+				                <label for="inputName">Nome</label>
+				                <input type="text" id="inputName" class="form-control" placeholder="nome completo" required>
+			              </div>
+			              <div class="form-group">
+			                <label for="inputEmail">Email</label>
+			                <input type="email" id="inputEmail" class="form-control" placeholder="endereço de email" required>
+			              </div>
+			              
+			              <div class="form-group">
+			                <label for="inputPassword">Senha</label>
+			                <input type="password" id="inputPassword" class="form-control" placeholder="cadastrar senha" required>
+			              </div>
+			              
+						  <br>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					        <button type="submit" class="btn btn-primary">Enviar</button>
+					      </div>
+			            </form>
+			        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

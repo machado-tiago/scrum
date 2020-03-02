@@ -1,87 +1,16 @@
 package br.com.webscrum.repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.webscrum.model.Projeto;
 
 @Repository
-@Transactional
-public class ProjetoRepository implements CrudRepository<Projeto, Integer> {
-	@PersistenceContext
-	private EntityManager em;
+public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
 
-	@Override
-	public <S extends Projeto> S save(S entity) {
-		em.persist(entity);
-		return null;
-	}
-
-	@Override
-	public <S extends Projeto> Iterable<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<Projeto> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Projeto> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Projeto> findAllById(Iterable<Integer> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(Projeto entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends Projeto> entities) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-
-	}
-
+	@Query("select p from Projeto p where status=null or status <> 'concluído' or status <> 'cancelado' ")
+	List<Projeto> currentProjects();
 }

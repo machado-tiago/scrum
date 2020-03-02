@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Projeto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_proj;
+	private Integer id;
 	private double orcamento;
 
 	@javax.validation.constraints.NotEmpty
@@ -45,7 +45,7 @@ public class Projeto {
 	@Override
 	public String toString() {
 		return String.format(
-				"Projeto: id=%s, nome=%s, objetivo=%s, status=%s, orcamento=%s colaboradores=%s, sprints=%s]", id_proj,
+				"Projeto: id=%s, nome=%s, objetivo=%s, status=%s, orcamento=%s colaboradores=%s, sprints=%s]", id,
 				nome, objetivo, status, orcamento, colaboradores, sprints);
 	}
 
@@ -70,12 +70,12 @@ public class Projeto {
 		sprints.remove(sprint);
 	}
 
-	public Integer getId_proj() {
-		return id_proj;
+	public Integer getid() {
+		return id;
 	}
 
-	public void setId_proj(Integer id_proj) {
-		this.id_proj = id_proj;
+	public void setid(Integer id) {
+		this.id = id;
 	}
 
 	public double getOrcamento() {

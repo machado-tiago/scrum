@@ -20,55 +20,58 @@
 <title>Scrum App</title>
 </head>
 <body>
-	<c:import url="../templates/nav.jsp"></c:import>
 		
-		<section class="aw-layout-content  js-content">
-			<div class="page-header">
-				<div class="container-fluid">
-					<h1>
-						Cadastro de Projeto
-					</h1>
-				</div>
-			</div>
-		
+	<section class="aw-layout-content  js-content">
+		<div class="page-header">
 			<div class="container-fluid">
-			<!--
-				<div class="alert  alert-danger  alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<i class="fa  fa-exclamation-circle"></i> Já existe um projeto com o nome informado.
+				<h1>
+					Cadastro de Projeto
+				</h1>
+			</div>
+		</div>
+	
+		<div class="container-fluid">
+		<!--
+			<div class="alert  alert-danger  alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="fa  fa-exclamation-circle"></i> Já existe um projeto com o nome informado.
+			</div>
+		-->	
+			<form method="post" name="addprojeto" action="<c:url value="/projeto/add" context="/"/>" 
+				class="form-vertical  js-form-loading">
+				<c:if test = "${not empty mensagemForm}">
+					<div class="alert alert-warning" role="alert"> <!-- ajustar para exibir a mensagem --> 
+						${mensagemForm}
+					</div>
+				</c:if>
+				 
+				<div class="form-group">
+					<label for="nome">Nome*</label>
+					<input id="nome" name="nome" type="text" class="form-control" required/>
 				</div>
-			-->	
-				<form method="post" name="addprojeto" action="<c:url value="/projeto/add" context="/"/>" 
-					class="form-vertical  js-form-loading">
-					
-					<span>${mensagemForm}</span> <br>
-					 
-					<div class="form-group">
-						<label for="nome">Nome*</label>
-						<input id="nome" name="nome" type="text" class="form-control"/>
-					</div>
-			
-					<div class="form-group">
-						<label for="objetivo">Objetivos*</label>
-						<textarea id="objetivo" name ="objetivo" rows="5" class="form-control"></textarea>
-					</div>
-			
-					<div class="form-group">
-						<label for="orcamento">Orçamento</label>
-						<input id="orcamento" name="orcamento" type="text" class="form-control" placeholder="R$"/>
-					</div>
-					
-					<div class="form-group">
-						<button class="btn  btn-primary" type="submit">Salvar</button>
-						<a href="<c:url value="/" context="/" />" class="btn  btn-default">Cancelar</a>
-					</div>
-			
-				</form>
+		
+				<div class="form-group">
+					<label for="objetivo">Objetivos*</label>
+					<textarea id="objetivo" name ="objetivo" rows="5" class="form-control" required></textarea>
+				</div>
+		
+				<div class="form-group">
+					<label for="orcamento">Orçamento</label>
+					<input id="orcamento" name="orcamento" type="text" class="form-control" placeholder="R$"/>
 				</div>
 				
-			</section>
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+					<a href="<c:url value="/" context="/home" />" class="btn  btn-default">Cancelar</a>
+				</div>
+		
+			</form>
+			</div>
 			
-	<c:import url="../templates/footer.jsp"></c:import>
+		</section>
+			
+		<c:import url="../templates/nav.jsp"></c:import>
+		<c:import url="../templates/footer.jsp"></c:import>
 	
 	<script type="text/javascript" src="<c:url value="/javascripts/vendors.min.js" context="/" />" > </script>
 	<script type="text/javascript" src="<c:url value="/javascripts/algaworks.min.js" context="/" />" ></script>

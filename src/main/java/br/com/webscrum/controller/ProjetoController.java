@@ -23,10 +23,10 @@ public class ProjetoController {
 	ProjetoService projetoService;
 
 
-	@GetMapping(value = { "/", "/all" })
+	@GetMapping(value = { "/all" })
 	public String projetos(Model model) {
 		System.out.println("Consulta ao banco de dados");
-		List<Projeto> projetos = projetoService.getAll();
+		List<Projeto> projetos = projetoService.currentProjects();
 		model.addAttribute("projetos", projetos);
 		return "home";
 	}

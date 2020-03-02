@@ -18,6 +18,10 @@ public class ProjetoService {
 		return projetoRepository.findAll();
 	}
 
+	public List<Projeto> currentProjects() {
+		return projetoRepository.currentProjects();
+	}
+
 	public void add(Projeto projeto) {
 		projeto.setStatus("planejamento");
 		projetoRepository.save(projeto);
