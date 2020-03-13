@@ -12,21 +12,21 @@
 </head>
 <body>
 		 <nav class="border-bottom border-secondary">
-			<ul class="bg-info px-5 nav justify-content-center">
-			  <li class="nav-item btn-info py-3 px-5">
-			    <a class="nav-link text-white" href="<c:url value="/home" context="/" />">Home</a>
+			<ul class="bg-info nav justify-content-center">
+			  <li class="nav-item py-3 px-3">
+			    <a class="nav-link btn btn-outline-warning px-4" href="<c:url value="/home" context="/" />">Home</a>
 			  </li>
-			  <li class="nav-item btn-info py-3 px-5">
-			    <a class="nav-link text-white" href="#">Meus Projetos</a>
+			  <li class="nav-item py-3 px-3">
+			    <a class="nav-link btn btn-outline-warning px-4" href="#">Meus Projetos</a>
 			  </li>
-			  <li class="nav-item btn-info py-3 px-5">
-			    <a class="nav-link text-white" href="#">Projetos em Andamento</a>
+			  <li class="nav-item py-3 px-3">
+			    <a class="nav-link btn btn-outline-warning px-4" href="#">Projetos em Andamento</a>
 			  </li>
-			  <li class="nav-item btn-info py-3 px-5">
-			    <a class="nav-link text-white" href="#">Projetos Encerrados</a>
+			  <li class="nav-item py-3 px-3">
+			    <a class="nav-link btn btn-outline-warning px-4" href="#">Projetos Encerrados</a>
 			  </li>
-			  <li class="nav-item btn-info py-3 px-5">
-			    <a class="nav-link text-white" href="<c:url value="/projeto/form" context="/" />" >Novo Projeto</a>
+			  <li class="nav-item py-3 px-3">
+			    <a class="nav-link btn btn-outline-warning px-4" href="<c:url value="/projeto/form" context="/" />" >Novo Projeto</a>
 			  </li>
 			</ul>
 		</nav>
