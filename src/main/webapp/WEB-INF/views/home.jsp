@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,8 @@
 <title>Home - Scrum App</title>
 </head>
 <body>
+	<c:import url="../views/templates/nav.jsp"></c:import>
+	
 	
 	<div class="container">
 		<c:if test = "${not empty mensagemForm}">
@@ -17,9 +20,8 @@
 				${mensagemForm}
 			</div>
 		</c:if>
-		<div class="d-flex justify-content-between m-3">
+		<div class="d-flex justify-content-between my-3 py-3">
 			<h3>Projetos em Andamento</h3>
-			<a class="btn btn-primary" href="<c:url value="/projeto/form" context="/" />"> Novo	Projeto</a>
 		</div>
 		<table class="table table-hover table-sm">
 			<thead>
