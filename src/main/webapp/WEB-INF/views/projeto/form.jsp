@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="pt">
+<html class="h-100"> 
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +14,7 @@
 
 <title>Scrum App</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100 m-0 p-0 ">
 	<c:import url="../templates/nav.jsp"></c:import>
 		
 	<section class="container">

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html> 
+<html class="h-100"> 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +11,7 @@
 	
 	<title>Scrum App</title>
 </head>
-<body style="height: 100vh;" class="d-flex flex-column m-0 p-0 ">
+<body class="d-flex flex-column h-100 m-0 p-0 ">
 	<div class="d-flex h-100">
 		<div class="row w-100 align-items-center m-0 p-0">
 	      <div class="col-12 col-lg-7 m-0 p-0">
