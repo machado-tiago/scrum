@@ -26,4 +26,8 @@ public class ProjetoService {
 		projeto.setStatus("planejamento");
 		projetoRepository.save(projeto);
 	}
+
+	public Projeto getProjeto(String id) {
+		return projetoRepository.getOne(Integer.valueOf(id));
+	}
 }
