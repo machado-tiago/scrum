@@ -34,7 +34,7 @@ public class ProjetoController {
 	@PostMapping("/add")
 	public String addProjeto(@Valid Projeto projeto, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			model.addAttribute("mensagemForm", "Erro! Campo obrigatório não preenchido.");
+			model.addAttribute("mensagemForm", "Erro! Campo obrigatório não preenchido." + result.toString());
 			return "projeto/form";
 		} else {
 			projetoService.add(projeto);

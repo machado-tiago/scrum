@@ -17,16 +17,17 @@
 <body class="d-flex flex-column h-100 m-0 p-0 ">
 	<c:import url="../templates/nav.jsp"></c:import>
 		
+	
 	<section class="container">
+			<c:if test = "${not empty mensagemForm}">
+				<div class="alert alert-warning container-fluid" role="alert"> <!-- ajustar para exibir a mensagem --> 
+					${mensagemForm}
+				</div>
+			</c:if>
 			<h3 class="py-3 my-3">Cadastro de Projeto</h3>
 			
 			<form method="post" name="addprojeto" action="<c:url value="/projeto/add" context="/"/>" 
 				class="form-vertical  js-form-loading">
-				<c:if test = "${not empty mensagemForm}">
-					<div class="alert alert-warning" role="alert"> <!-- ajustar para exibir a mensagem --> 
-						${mensagemForm}
-					</div>
-				</c:if>
 				 
 				<div class="form-group">
 					<label for="nome">Nome*</label>
@@ -37,13 +38,23 @@
 					<label for="objetivo">Objetivos*</label>
 					<textarea id="objetivo" name ="objetivo" rows="5" class="form-control" required></textarea>
 				</div>
-		
-				<div class="form-group">
-					<label for="orcamento">Orçamento</label>
-					<input id="orcamento" name="orcamento" type="text" class="form-control" placeholder="R$"/>
-				</div>
+
+				<div class="d-flex">
+					<div class="flex-fill mr-1">
+						<label for="colaboradores">Equipe</label>
+						<select multiple class="form-control" id="colaboradores" name="colaboradores">
+							<c:forEach var="colaborador" items="${listaColab}" >
+								<option value="${colaborador.id}">${colaborador.nome}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group flex-fill ml-1">
+						<label for="orcamento">Orçamento</label>
+						<input id="orcamento" name="orcamento" type="text" class="form-control" placeholder="R$"/>
+					</div>
+				</div>		
 				
-				<div class="form-group">
+				<div class="form-group mt-3">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 					<a href="<c:url value="/" context="/home" />" class="btn  btn-default">Cancelar</a>
 				</div>

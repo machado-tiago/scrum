@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class Projeto {
 	private String objetivo;
 	private String status;
 	@Autowired
-	@OneToMany
+	@ManyToMany
 	private List<Colaborador> colaboradores;
 	@OneToMany
 	@Autowired
@@ -44,11 +45,17 @@ public class Projeto {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"Projeto: id=%s, nome=%s, objetivo=%s, status=%s, orcamento=%s colaboradores=%s, sprints=%s]", id,
-				nome, objetivo, status, orcamento, colaboradores, sprints);
+		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s", id, nome, status,
+				printColabs());
 	}
 
+	public String printColabs() {
+		String colabList = "";
+		for (Colaborador colaborador : colaboradores) {
+			colabList += colaborador.getNome() + "/";
+		}
+		return colabList;
+	}
 
 	public void alterarStatus(String status) {
 		setStatus(status);

@@ -9,23 +9,19 @@ import javax.persistence.Id;
 public class Colaborador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_colab;
+	private Integer id;
 	private String nome;
 	private String funcao;
 
-	public Colaborador(Integer id_colab, String nome, String funcao) {
-		super();
-		this.id_colab = id_colab;
-		this.nome = nome;
-		this.funcao = funcao;
+	public Colaborador() {
 	}
 
-	public Integer getId_colab() {
-		return id_colab;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId_colab(Integer id_colab) {
-		this.id_colab = id_colab;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
