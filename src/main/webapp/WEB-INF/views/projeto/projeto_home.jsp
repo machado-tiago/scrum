@@ -19,46 +19,31 @@
 		
 	
 	<section class="container">
-			<c:if test = "${not empty mensagemForm}">
-				<div class="alert alert-warning container-fluid" role="alert"> <!-- ajustar para exibir a mensagem --> 
-					${mensagemForm}
-				</div>
-			</c:if>
-			<h3 class="py-3 my-3">Projeto</h3>
+		<h3 class="py-3 my-3">Projeto</h3>
+		<div class="form-group">
+			<label for="nome">Nome</label>
+			<input id="nome" name="nome" type="text" class="form-control" value="${projeto.nome}" disabled>
+		</div>
+		<div class="form-group">
+			<label for="objetivo">Objetivos</label>
+			<textarea id="objetivo" name="objetivo" type="text" class="form-control"disabled>${projeto.objetivo}</textarea>
+		</div>
+		<div class="form-group">
+			<label for="colaboradores">Equipe</label>
+			<select multiple disabled class="form-control" id="colaboradores" name="colaboradores">
+				<c:forEach var="colab" items="${projeto.colaboradores}">
+					<option>${colab.nome}</option>
+				</c:forEach>
+			</select>		
+		</div>
+		<div class="form-group">
+			<label for="status">Status</label>
+			<input id="status" name="status" type="text" class="form-control" disabled value="${projeto.status}" >
+		</div>
 			
-			<form method="post" name="addprojeto" action="<c:url value="/projeto/add" context="/"/>" 
-				class="form-vertical  js-form-loading">
-				 
-				<div class="form-group">
-					<label for="nome">Nome*</label>
-					<input id="nome" name="nome" type="text" class="form-control" required/>
-				</div>
+	</section>
 		
-				<div class="form-group">
-					<label for="objetivo">Objetivos*</label>
-					<textarea id="objetivo" name ="objetivo" rows="5" class="form-control" required></textarea>
-				</div>
-
-				<div class="d-flex">
-					<div class="flex-fill mr-1">
-						<label for="colaboradores">Equipe</label>
-						<select multiple class="form-control" id="colaboradores" name="colaboradores">
-							<c:forEach var="colaborador" items="${listaColab}" >
-								<option value="${colaborador.id}">${colaborador.nome}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="form-group flex-fill ml-1">
-						<label for="orcamento">Orçamento</label>
-						<input id="orcamento" name="orcamento" type="text" class="form-control" placeholder="R$"/>
-					</div>
-				</div>		
-				
-		
-			</form>
-		</section>
-			
-		<c:import url="../templates/footer.jsp"></c:import>
+	<c:import url="../templates/footer.jsp"></c:import>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
