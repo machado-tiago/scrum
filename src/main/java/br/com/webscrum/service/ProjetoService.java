@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.webscrum.model.Projeto;
+import br.com.webscrum.model.Sprint;
 import br.com.webscrum.repository.ProjetoRepository;
 
 @Service
@@ -13,6 +14,9 @@ public class ProjetoService {
 
 	@Autowired
 	ProjetoRepository projetoRepository;
+
+	@Autowired
+	Sprint sprint;
 
 	public List<Projeto> getAll() {
 		return projetoRepository.findAll();
@@ -23,7 +27,7 @@ public class ProjetoService {
 	}
 
 	public void add(Projeto projeto) {
-		projeto.setStatus("planejamento");
+		projeto.iniciarProjeto();
 		projetoRepository.save(projeto);
 	}
 

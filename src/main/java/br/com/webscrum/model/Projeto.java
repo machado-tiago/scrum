@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,13 +26,39 @@ public class Projeto {
 	@Autowired
 	@ManyToMany
 	private List<Colaborador> colaboradores;
+	
 	@OneToMany
 	@Autowired
 	private List<Sprint> sprints;
+	
+	@OneToOne
+	@Autowired
+	private Sprint sprint_id;
 
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Sprint getSprint_id() {
+		return sprint_id;
+	}
+
+	public void setSprint_id(Sprint sprintAtual) {
+		this.sprint_id = sprintAtual;
+	}
 
 	public Projeto() {
+	}
 
+	public void iniciarProjeto() {
+		this.setStatus("planejamento");
+		sprint_id.sprintNewProject();
+		this.addSprint(sprint_id);
 	}
 
 	public boolean encerrarProjeto(String status) {

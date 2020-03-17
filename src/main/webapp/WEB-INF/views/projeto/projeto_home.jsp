@@ -19,28 +19,36 @@
 		
 	
 	<section class="container">
-		<h3 class="py-3 my-3">Projeto</h3>
-		<div class="form-group">
-			<label for="nome">Nome</label>
-			<input id="nome" name="nome" type="text" class="form-control" value="${projeto.nome}" disabled>
+		<div class="row  align-items-center py-3">
+			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
+			<div class="ml-auto col-4">
+				<div class="d-flex justify-content-end  align-items-center">
+					<div class="mr-auto">
+						<strong>Sprint Atual: </strong>	
+						<p class="m-0">${projeto.sprint_id.sprint}</p>
+					</div>
+					
+					<div class="">
+						<strong>Status: </strong>
+						<p class="m-0">${projeto.status.toUpperCase()}</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="objetivo">Objetivos</label>
-			<textarea id="objetivo" name="objetivo" type="text" class="form-control"disabled>${projeto.objetivo}</textarea>
-		</div>
-		<div class="form-group">
-			<label for="colaboradores">Equipe</label>
-			<select multiple disabled class="form-control" id="colaboradores" name="colaboradores">
-				<c:forEach var="colab" items="${projeto.colaboradores}">
-					<option>${colab.nome}</option>
-				</c:forEach>
-			</select>		
-		</div>
-		<div class="form-group">
-			<label for="status">Status</label>
-			<input id="status" name="status" type="text" class="form-control" disabled value="${projeto.status}" >
-		</div>
-			
+		<div class="row">
+			<div class="col-9 form-group">
+				<label for="objetivo">Objetivos</label>
+				<textarea id="objetivo" name="objetivo" type="text" class="form-control" readonly >${projeto.objetivo}</textarea>
+			</div>
+			<div class="col-3 form-group">
+				<label for="colaboradores">Equipe</label>
+				<select multiple readonly class="form-control" id="colaboradores" name="colaboradores">
+					<c:forEach var="colab" items="${projeto.colaboradores}">
+						<option>${colab.nome}</option>
+					</c:forEach>
+				</select>		
+			</div>
+		</div>			
 	</section>
 		
 	<c:import url="../templates/footer.jsp"></c:import>
