@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,15 +26,10 @@ public class Projeto {
 	@ManyToMany
 	private List<Colaborador> colaboradores;
 	
-	@OneToMany
 	@Autowired
+	@OneToMany
 	private List<Sprint> sprints;
 	
-	@OneToOne
-	@Autowired
-	private Sprint sprint_id;
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -44,26 +38,27 @@ public class Projeto {
 		this.id = id;
 	}
 
-	public Sprint getSprint_id() {
-		return sprint_id;
-	}
-
-	public void setSprint_id(Sprint sprintAtual) {
-		this.sprint_id = sprintAtual;
-	}
 
 	public Projeto() {
 	}
 
+	public Integer sprintAtual() {
+		Integer numero = 0;
+		for (Sprint sprint : sprints) {
+			if (sprint.isAtual()) {
+				numero = sprint.getN_sprint();
+			}
+		}
+		return numero;
+	}
+
 	public void iniciarProjeto() {
 		this.setStatus("planejamento");
-		sprint_id.sprintNewProject();
-		this.addSprint(sprint_id);
 	}
 
 	public boolean encerrarProjeto(String status) {
 		if (status == "cancelado" | status == "encerrado") {
-			setStatus(status);
+			this.setStatus(status);
 			return true;
 		} else {
 			return false;

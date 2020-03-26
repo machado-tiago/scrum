@@ -9,12 +9,28 @@ import javax.persistence.Id;
 public class Sprint {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_sprint;
-	private int sprint;
+	private Integer id;
+	private int n_sprint;
 	private String descricao;
 	private float duracao;
+	private boolean atual;
 
 	
+	public Sprint() {
+	}
+
+	public boolean isAtual() {
+		return atual;
+	}
+
+	public void setAtual(boolean atual) {
+		this.atual = atual;
+	}
+
+	public void setN_sprint(int n_sprint) {
+		this.n_sprint = n_sprint;
+	}
+
 	public double getDuracao() {
 		return duracao;
 	}
@@ -31,28 +47,26 @@ public class Sprint {
 		this.descricao = descricao;
 	}
 
-	public Sprint() {
-	}
 
 	public void sprintNewProject() {
-		this.setSprint(0);
+		this.setN_sprint(0);
 		this.setDescricao("Planejamento do Projeto e Arquitetura do Sistema");
 	}
 
-	public Integer getSprint() {
-		return sprint;
+	public Integer getN_sprint() {
+		return n_sprint;
 	}
 
-	public void setSprint(Integer sprint) {
-		this.sprint = sprint;
+	public void setSprint(Integer n_sprint) {
+		this.n_sprint = n_sprint;
 	}
 
-	public Integer getId_sprint() {
-		return id_sprint;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId_sprint(Integer id_sprint) {
-		this.id_sprint = id_sprint;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

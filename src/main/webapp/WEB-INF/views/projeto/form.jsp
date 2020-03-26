@@ -56,7 +56,7 @@
 				
 				<div class="form-group mt-3">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
-					<a href="<c:url value="/" context="/home" />" class="btn  btn-default">Cancelar</a>
+					<a href="<c:url value="/home" context="/" />" class="btn  btn-default">Cancelar</a>
 				</div>
 		
 			</form>

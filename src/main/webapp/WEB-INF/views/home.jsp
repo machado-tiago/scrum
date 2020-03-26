@@ -44,7 +44,7 @@
 						<td></td>
 						<td></td>
 						<td>
-						<a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
+							<a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
 						</td>
 					</tr>
 				</c:forEach>

@@ -19,19 +19,25 @@
 		
 	
 	<section class="container">
+		<div class="row align-items-start py-3">
+					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
+					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Planning</a>
+					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2">Editar</a>
+		</div>
 		<div class="row  align-items-center py-3">
 			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
-			<div class="ml-auto col-4">
+			<div class="ml-auto col-5">
 				<div class="d-flex justify-content-end  align-items-center">
 					<div class="mr-auto">
 						<strong>Sprint Atual: </strong>	
-						<p class="m-0">${projeto.sprint_id.sprint}</p>
+						<p class="m-0 text-center">${projeto.sprintAtual()}</p>
 					</div>
 					
 					<div class="">
 						<strong>Status: </strong>
 						<p class="m-0">${projeto.status.toUpperCase()}</p>
 					</div>
+					
 				</div>
 			</div>
 		</div>
