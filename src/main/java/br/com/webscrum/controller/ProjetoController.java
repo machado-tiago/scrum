@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.webscrum.model.Projeto;
+import br.com.webscrum.model.Sprint;
 import br.com.webscrum.service.ProjetoService;
 
 @Controller
@@ -33,12 +34,13 @@ public class ProjetoController {
 	}
 
 	@PostMapping("/add")
-	public String addProjeto(@Valid Projeto projeto, BindingResult result, Model model, RedirectAttributes attributes) {
+	public String addProjeto(@Valid Projeto projeto, @Autowired Sprint sprint, BindingResult result, Model model,
+			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			model.addAttribute("mensagemForm", "Erro! Campo obrigatório não preenchido." + result.toString());
 			return "projeto/form";
 		} else {
-			projetoService.add(projeto);
+			projetoService.add(projeto,sprint);
 			attributes.addFlashAttribute("mensagemForm",
 					"Novo Projeto Cadastrado com Sucesso!" + "\r\n" + projeto.toString());
 			return "redirect:/projeto/all";

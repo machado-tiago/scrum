@@ -1,22 +1,42 @@
 package br.com.webscrum.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Sprint {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private int n_sprint;
 	private String descricao;
 	private float duracao;
 	private boolean atual;
+	@Autowired
+	@OneToMany
+	private List<UseCase> usecases;
 
 	
 	public Sprint() {
+	}
+
+	@Autowired
+	public void addUseCase(UseCase usecase) {
+		usecases.add(usecase);
+	}
+
+	public List<UseCase> getUsecases() {
+		return usecases;
+	}
+
+	public void setUsecases(List<UseCase> usecases) {
+		this.usecases = usecases;
 	}
 
 	public boolean isAtual() {
@@ -25,10 +45,6 @@ public class Sprint {
 
 	public void setAtual(boolean atual) {
 		this.atual = atual;
-	}
-
-	public void setN_sprint(int n_sprint) {
-		this.n_sprint = n_sprint;
 	}
 
 	public double getDuracao() {
@@ -47,19 +63,6 @@ public class Sprint {
 		this.descricao = descricao;
 	}
 
-
-	public void sprintNewProject() {
-		this.setN_sprint(0);
-		this.setDescricao("Planejamento do Projeto e Arquitetura do Sistema");
-	}
-
-	public Integer getN_sprint() {
-		return n_sprint;
-	}
-
-	public void setSprint(Integer n_sprint) {
-		this.n_sprint = n_sprint;
-	}
 
 	public Integer getId() {
 		return id;

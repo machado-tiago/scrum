@@ -25,11 +25,34 @@ public class Projeto {
 	@Autowired
 	@ManyToMany
 	private List<Colaborador> colaboradores;
-	
 	@Autowired
 	@OneToMany
 	private List<Sprint> sprints;
+	private int sprintAtual;
 	
+	public Projeto() {
+		this.setStatus("Planejamento do Projeto e de Arquitetura");
+	}
+
+	public int getIndexSprintAtual() {
+		return this.sprintAtual;
+	}
+
+	public Sprint getSprintAtual() {
+		return this.sprints.get(getIndexSprintAtual());
+	}
+
+	private Integer getSprintIndex(Sprint sprint) {
+		return sprints.indexOf(sprint);
+	}
+
+	public void setSprintAtual(Sprint sprint) {
+		this.getSprintAtual().setAtual(false);
+		sprint.setAtual(true);
+		this.sprintAtual = this.getSprintIndex(sprint);
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -39,26 +62,10 @@ public class Projeto {
 	}
 
 
-	public Projeto() {
-	}
 
-	public Integer sprintAtual() {
-		Integer numero = 0;
-		for (Sprint sprint : sprints) {
-			if (sprint.isAtual()) {
-				numero = sprint.getN_sprint();
-			}
-		}
-		return numero;
-	}
 
-	public void iniciarProjeto() {
-		this.setStatus("planejamento");
-	}
-
-	public boolean encerrarProjeto(String status) {
+	public boolean isEncerrado() {
 		if (status == "cancelado" | status == "encerrado") {
-			this.setStatus(status);
 			return true;
 		} else {
 			return false;
@@ -79,10 +86,6 @@ public class Projeto {
 		return colabList;
 	}
 
-	public void alterarStatus(String status) {
-		setStatus(status);
-	}
-
 	public void adicionarColab(Colaborador colaborador) {
 		colaboradores.add(colaborador);
 	}
@@ -91,6 +94,13 @@ public class Projeto {
 		colaboradores.remove(colaboradores.indexOf(colaborador));
 	}
 
+	@Autowired
+	public void addSprintZero(Sprint sprint) {
+		sprint.setDescricao("Sem Sprint");
+		sprints.add(sprint);
+	}
+
+	@Autowired
 	public void addSprint(Sprint sprint) {
 		sprints.add(sprint);
 	}
