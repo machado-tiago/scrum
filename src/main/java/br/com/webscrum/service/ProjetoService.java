@@ -26,8 +26,6 @@ public class ProjetoService {
 	}
 
 	public void add(Projeto projeto) {
-		projeto.newProject();
-//		sprintService.add(projeto.getSprints().get(0));
 		projetoRepository.save(projeto);
 	}
 

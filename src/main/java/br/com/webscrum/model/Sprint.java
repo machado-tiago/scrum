@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Entity
 public class Sprint {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Integer id;
 	private String descricao;
 	private float duracao;
@@ -23,6 +22,7 @@ public class Sprint {
 	private List<UseCase> usecases;
 
 	public Sprint() {
+
 	}
 
 	@Autowired
@@ -69,6 +69,12 @@ public class Sprint {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Sprint [id=%s, descricao=%s, duracao=%s, atual=%s, usecases=%s]", id, descricao, duracao,
+				atual, usecases);
 	}
 
 }

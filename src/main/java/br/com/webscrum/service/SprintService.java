@@ -17,7 +17,12 @@ public class SprintService {
 		return sprintRepository.findAll();
 	}
 
-	public void add(Sprint sprint) {
+	public Sprint add(Sprint sprint) {
+		sprintRepository.save(sprint);
+		return sprint;
+	}
+
+	public void merge(Sprint sprint) {
 		sprintRepository.save(sprint);
 	}
 }

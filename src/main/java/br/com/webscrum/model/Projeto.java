@@ -33,15 +33,15 @@ public class Projeto {
 	public Projeto() {
 	}
 
-	public void newProject() {
+	public void newProject(Sprint sprint) {
 		this.setStatus("Planejamento do Projeto e de Arquitetura");
 		this.sprintAtual = 0;
-//		this.addSprint(new Sprint()).setDescricao("Sem Sprint");
+		this.addSprint(sprint);
+
 	}
 
-	public Sprint addSprint(Sprint sprint) {
+	public void addSprint(Sprint sprint) {
 		sprints.add(sprint);
-		return sprint;
 	}
 
 	public String printSprints() {
