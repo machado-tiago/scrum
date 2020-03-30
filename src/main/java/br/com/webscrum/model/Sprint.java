@@ -22,7 +22,6 @@ public class Sprint {
 	@OneToMany
 	private List<UseCase> usecases;
 
-	
 	public Sprint() {
 	}
 

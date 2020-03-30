@@ -17,23 +17,22 @@
 <body class="d-flex flex-column h-100 m-0 p-0 ">
 	<c:import url="../templates/nav.jsp"></c:import>
 		
-	
 	<section class="container">
 		<div class="row align-items-start py-3">
-					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
-					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Planning</a>
-					<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2">Editar</a>
+			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
+			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Planning</a>
+			<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2">Editar</a>
 		</div>
 		<div class="row  align-items-center py-3">
-			<h3 class="col-4  my-3">Sprint Planning - ${projeto.nome}</h3>
-			<div class="ml-auto col-5">
+			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
+			<div class="ml-auto col-4">
 				<div class="d-flex justify-content-end  align-items-center">
-					<div class="mr-auto">
-						<strong>Sprint Atual: </strong>	
-						<p class="m-0 text-center">${projeto.sprintAtual()}</p>
+					<div class="ml-auto">
+						<div class="text-center"><strong>Sprint Atual: </strong></div>	
+						<p class="m-0 text-center">${projeto.sprintAtual}</p>
 					</div>
 					
-					<div class="">
+					<div class="ml-3">
 						<strong>Status: </strong>
 						<p class="m-0">${projeto.status.toUpperCase()}</p>
 					</div>
@@ -43,36 +42,8 @@
 		</div>
 		<div class="row">
 			<div class="col-9 form-group">
-				
-				<div>Product Backlog</div>
-				<table class="table table-hover table-sm">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Use Case</th>
-							<th>Ator</th>
-							<th>Prioridade</th>
-							<th>Status</th>
-							<th>Requisitos</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="projeto" items="${projetos}" varStatus="loop">
-							<tr><!-- colocar um link em cada linha -->
-								<td>${sprint.index}</td>
-								<td>${projeto.nome}</td>
-								<td>${projeto.status}</td>
-								<td></td>
-								<td></td>
-								<td>
-									<a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-			
-				</table>
+				<label for="objetivo">Objetivos</label>
+				<textarea id="objetivo" name="objetivo" type="text" class="form-control" readonly >${projeto.objetivo}</textarea>
 			</div>
 			<div class="col-3 form-group">
 				<label for="colaboradores">Equipe</label>
@@ -84,6 +55,7 @@
 			</div>
 		</div>			
 	</section>
+	
 		
 	<c:import url="../templates/footer.jsp"></c:import>
 	

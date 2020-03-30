@@ -28,17 +28,40 @@ public class Projeto {
 	@Autowired
 	@OneToMany
 	private List<Sprint> sprints;
-	private int sprintAtual;
+	private Integer sprintAtual;
 	
 	public Projeto() {
-		this.setStatus("Planejamento do Projeto e de Arquitetura");
 	}
 
-	public int getIndexSprintAtual() {
+	public void newProject() {
+		this.setStatus("Planejamento do Projeto e de Arquitetura");
+		this.sprintAtual = 0;
+//		this.addSprint(new Sprint()).setDescricao("Sem Sprint");
+	}
+
+	public Sprint addSprint(Sprint sprint) {
+		sprints.add(sprint);
+		return sprint;
+	}
+
+	public String printSprints() {
+		String sprintList = "";
+		for (Sprint sprint : sprints) {
+			sprintList += sprint.getDescricao() + "/";
+		}
+		return sprintList;
+	}
+
+	public Integer getIndexSprintAtual() {
 		return this.sprintAtual;
 	}
 
-	public Sprint getSprintAtual() {
+	public Integer getSprintAtual() {
+		return this.sprintAtual;
+
+	}
+
+	public Sprint sprintAtual() {
 		return this.sprints.get(getIndexSprintAtual());
 	}
 
@@ -47,9 +70,15 @@ public class Projeto {
 	}
 
 	public void setSprintAtual(Sprint sprint) {
-		this.getSprintAtual().setAtual(false);
+		this.sprintAtual().setAtual(false);
 		sprint.setAtual(true);
 		this.sprintAtual = this.getSprintIndex(sprint);
+	}
+
+	public void setSprintAtual(Integer integer) {
+		this.sprintAtual().setAtual(false);
+		sprints.get(integer).setAtual(true);
+		this.sprintAtual = integer;
 	}
 
 
@@ -92,17 +121,6 @@ public class Projeto {
 
 	public void removerColab(Colaborador colaborador) {
 		colaboradores.remove(colaboradores.indexOf(colaborador));
-	}
-
-	@Autowired
-	public void addSprintZero(Sprint sprint) {
-		sprint.setDescricao("Sem Sprint");
-		sprints.add(sprint);
-	}
-
-	@Autowired
-	public void addSprint(Sprint sprint) {
-		sprints.add(sprint);
 	}
 
 	public void delSprint(Sprint sprint) {
