@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Colaborador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id_colab;
 	private String nome;
 	private String funcao;
 	private String email;
@@ -25,12 +25,12 @@ public class Colaborador {
 	public Colaborador() {
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getId_colab() {
+		return id_colab;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_colab(Integer id) {
+		this.id_colab = id;
 	}
 
 	public String getNome() {

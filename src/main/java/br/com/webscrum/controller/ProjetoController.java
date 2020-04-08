@@ -44,9 +44,8 @@ public class ProjetoController {
 			return "projeto/form";
 		} else {
 			sprint.setDescricao("Product Backlog");
-			System.out.println(sprint.toString());
-			sprintService.add(sprint);
-			projeto.newProject(sprint);
+			sprintService.add(sprint); // está salvando corretamente no banco de dados e o objeto já retorna o id
+			projeto.newProject(sprint); // está dando ERRO!
 			projetoService.add(projeto);
 			attributes.addFlashAttribute("mensagemForm",
 					"Novo Projeto Cadastrado com Sucesso!" + "\r\n" + projeto.toString());
@@ -63,7 +62,7 @@ public class ProjetoController {
 		return "projeto/projeto_home";
 	}
 
-	@GetMapping(value = "/plannning/{id}")
+	@GetMapping(value = "/planning/{id}")
 	public String planning(@PathVariable("id") String id, Model model) {
 		System.out.println("Consulta ao banco de dados ID");
 		Projeto projeto = projetoService.getProjeto(id);

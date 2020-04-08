@@ -25,4 +25,8 @@ public class SprintService {
 	public void merge(Sprint sprint) {
 		sprintRepository.save(sprint);
 	}
+
+	public Sprint getSprint(Integer integer) {
+		return sprintRepository.getOne(integer);
+	}
 }

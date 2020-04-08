@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UseCase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id_uc;
 	private String usecase;
 	private String prioridade;
 	private String ator;
@@ -32,12 +32,12 @@ public class UseCase {
 	@OneToMany
 	private List<Requirement> requirements;
 
-	public Integer getId() {
-		return id;
+	public Integer getId_uc() {
+		return id_uc;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_uc(Integer id) {
+		this.id_uc = id;
 	}
 
 	public String getUsecase() {

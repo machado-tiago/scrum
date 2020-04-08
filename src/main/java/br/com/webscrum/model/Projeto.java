@@ -1,5 +1,6 @@
 package br.com.webscrum.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Projeto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id_project;
 	private double orcamento;
 
 	@javax.validation.constraints.NotEmpty
@@ -25,19 +26,17 @@ public class Projeto {
 	@Autowired
 	@ManyToMany
 	private List<Colaborador> colaboradores;
-	@Autowired
 	@OneToMany
-	private List<Sprint> sprints;
+	private List<Sprint> sprints = new ArrayList<>();// com autowired não estava funcionando
 	private Integer sprintAtual;
 	
 	public Projeto() {
 	}
 
 	public void newProject(Sprint sprint) {
-		this.setStatus("Planejamento do Projeto e de Arquitetura");
+		this.setStatus("Planejamento e Arquitetura");
 		this.sprintAtual = 0;
 		this.addSprint(sprint);
-
 	}
 
 	public void addSprint(Sprint sprint) {
@@ -82,12 +81,12 @@ public class Projeto {
 	}
 
 
-	public Integer getId() {
-		return id;
+	public Integer getId_project() {
+		return id_project;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_project(Integer id) {
+		this.id_project = id;
 	}
 
 
@@ -103,7 +102,7 @@ public class Projeto {
 
 	@Override
 	public String toString() {
-		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s", id, nome, status,
+		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s", id_project, nome, status,
 				printColabs());
 	}
 
@@ -128,11 +127,11 @@ public class Projeto {
 	}
 
 	public Integer getid() {
-		return id;
+		return id_project;
 	}
 
 	public void setid(Integer id) {
-		this.id = id;
+		this.id_project = id;
 	}
 
 	public double getOrcamento() {

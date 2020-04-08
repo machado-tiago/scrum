@@ -44,7 +44,7 @@
 						<label for="colaboradores">Equipe</label>
 						<select multiple class="form-control" id="colaboradores" name="colaboradores">
 							<c:forEach var="colaborador" items="${listaColab}" >
-								<option value="${colaborador.id}">${colaborador.nome}</option>
+								<option value="${colaborador.id_colab}">${colaborador.nome}</option>
 							</c:forEach>
 						</select>
 					</div>
