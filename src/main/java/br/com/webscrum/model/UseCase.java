@@ -1,5 +1,6 @@
 package br.com.webscrum.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,17 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Entity
 public class UseCase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_uc;
+	private Integer id;
 	private String usecase;
 	private String prioridade;
 	private String ator;
 	private String status;
+	@OneToMany
+	private List<Requirement> requirements = new ArrayList<>();
+
+	public Integer getId() {
+		return id;
+	}
 
 	public String getStatus() {
 		return status;
@@ -27,17 +32,8 @@ public class UseCase {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	@Autowired
-	@OneToMany
-	private List<Requirement> requirements;
-
-	public Integer getId_uc() {
-		return id_uc;
-	}
-
-	public void setId_uc(Integer id) {
-		this.id_uc = id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUsecase() {

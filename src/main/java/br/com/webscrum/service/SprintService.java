@@ -18,15 +18,16 @@ public class SprintService {
 	}
 
 	public Sprint add(Sprint sprint) {
+		sprint.setId(null);
 		sprintRepository.save(sprint);
 		return sprint;
 	}
 
-	public void merge(Sprint sprint) {
-		sprintRepository.save(sprint);
+	public Sprint merge(Sprint sprint) {
+		return sprintRepository.saveAndFlush(sprint);
 	}
 
-	public Sprint getSprint(Integer integer) {
+	public Sprint get(Integer integer) {
 		return sprintRepository.getOne(integer);
 	}
 }

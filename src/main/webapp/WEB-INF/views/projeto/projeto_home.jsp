@@ -18,21 +18,26 @@
 	<c:import url="../templates/nav.jsp"></c:import>
 		
 	<section class="container">
+		<c:if test = "${not empty mensagemForm}">
+			<div class="alert alert-info" role="alert">
+				${mensagemForm}
+			</div>
+		</c:if>
 		<div class="row align-items-start py-3">
-			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
 			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Planning</a>
+			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
 			<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2">Editar</a>
 		</div>
 		<div class="row  align-items-center py-3">
 			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
-			<div class="ml-auto col-4">
+			<div class="ml-auto col-6">
 				<div class="d-flex justify-content-end  align-items-center">
 					<div class="ml-auto">
 						<div class="text-center"><strong>Sprint Atual: </strong></div>	
 						<p class="m-0 text-center">${projeto.sprintAtual}</p>
 					</div>
 					
-					<div class="ml-3">
+					<div class="ml-5">
 						<strong>Status: </strong>
 						<p class="m-0">${projeto.status.toUpperCase()}</p>
 					</div>

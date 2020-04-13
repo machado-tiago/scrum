@@ -1,5 +1,6 @@
 package br.com.webscrum.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,23 +9,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Entity
 public class Sprint {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_sprint;
+	private Integer id;
 	private String descricao;
 	private float duracao;
 	private boolean atual;
 
-	@Autowired
 	@OneToMany
-	private List<UseCase> usecases;
+	private List<UseCase> usecases = new ArrayList<>();
 
 	public Sprint() {
 
+	}
+
+	private Integer getUseCaseIndex(UseCase usecase) {
+		return usecases.indexOf(usecase);
 	}
 
 	public void addUseCase(UseCase usecase) {
@@ -65,19 +67,26 @@ public class Sprint {
 	}
 
 
-	public Integer getId_sprint() {
-		return id_sprint;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId_sprint(Integer id) {
-		this.id_sprint = id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Sprint [id=%s, descricao=%s, duracao=%s, atual=%s, usecases=%s]", id_sprint, descricao,
+		return String.format("Sprint [id=%s, descricao=%s, duracao=%s, atual=%s, usecases=%s]", id, descricao,
 				duracao,
-				atual, usecases);
+				atual, this.printUseCases());
 	}
 
+	private String printUseCases() {
+		String ucList = "";
+		for (UseCase usecase : usecases) {
+			ucList += usecase.getUsecase() + "/";
+		}
+		return ucList;
+	}
 }

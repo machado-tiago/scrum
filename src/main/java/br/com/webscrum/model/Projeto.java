@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Projeto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_project;
+	private Integer id;
 	private double orcamento;
 
 	@javax.validation.constraints.NotEmpty
@@ -46,7 +46,7 @@ public class Projeto {
 	public String printSprints() {
 		String sprintList = "";
 		for (Sprint sprint : sprints) {
-			sprintList += sprint.getDescricao() + "/";
+			sprintList += sprint.toString() + "/";
 		}
 		return sprintList;
 	}
@@ -57,6 +57,11 @@ public class Projeto {
 
 	public Integer getSprintAtual() {
 		return this.sprintAtual;
+
+	}
+
+	public Sprint getSprint(Integer index) {
+		return this.sprints.get(index);
 
 	}
 
@@ -81,17 +86,6 @@ public class Projeto {
 	}
 
 
-	public Integer getId_project() {
-		return id_project;
-	}
-
-	public void setId_project(Integer id) {
-		this.id_project = id;
-	}
-
-
-
-
 	public boolean isEncerrado() {
 		if (status == "cancelado" | status == "encerrado") {
 			return true;
@@ -102,8 +96,8 @@ public class Projeto {
 
 	@Override
 	public String toString() {
-		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s", id_project, nome, status,
-				printColabs());
+		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s, Sprints: %s", id, nome, status,
+				this.printColabs(), this.printSprints());
 	}
 
 	public String printColabs() {
@@ -126,12 +120,12 @@ public class Projeto {
 		sprints.remove(sprint);
 	}
 
-	public Integer getid() {
-		return id_project;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setid(Integer id) {
-		this.id_project = id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public double getOrcamento() {

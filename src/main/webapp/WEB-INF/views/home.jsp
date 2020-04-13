@@ -15,11 +15,7 @@
 	
 	
 	<div class="container">
-		<c:if test = "${not empty mensagemForm}">
-			<div class="alert alert-info" role="alert">
-				${mensagemForm}
-			</div>
-		</c:if>
+
 		<div class="d-flex justify-content-between my-3 py-3">
 			<h3>Projetos em Andamento</h3>
 		</div>

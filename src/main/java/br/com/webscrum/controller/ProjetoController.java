@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.webscrum.model.Projeto;
-import br.com.webscrum.model.Sprint;
 import br.com.webscrum.service.ProjetoService;
 import br.com.webscrum.service.SprintService;
 
@@ -37,26 +36,23 @@ public class ProjetoController {
 	}
 
 	@PostMapping("/add")
-	public String addProjeto(@Valid Projeto projeto, Sprint sprint, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+	public String addProjeto(@Valid Projeto projeto, BindingResult result, Model model,
+			RedirectAttributes attributes) { // projeto é instanciado automaticamente
 		if (result.hasErrors()) {
 			model.addAttribute("mensagemForm", "Erro! Campo obrigatório não preenchido." + result.toString());
 			return "projeto/form";
 		} else {
-			sprint.setDescricao("Product Backlog");
-			sprintService.add(sprint); // está salvando corretamente no banco de dados e o objeto já retorna o id
-			projeto.newProject(sprint); // está dando ERRO!
 			projetoService.add(projeto);
 			attributes.addFlashAttribute("mensagemForm",
-					"Novo Projeto Cadastrado com Sucesso!" + "\r\n" + projeto.toString());
-			return "redirect:/projeto/all";
+					"Novo Projeto Cadastrado com Sucesso!");
+			return "redirect:" + projeto.getId();
 		}
 	}
 
 	@GetMapping(value = "/{id}")
 	public String abrir(@PathVariable("id") String id, Model model) {
 		System.out.println("Consulta ao banco de dados ID");
-		Projeto projeto = projetoService.getProjeto(id);
+		Projeto projeto = projetoService.get(id);
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
 		return "projeto/projeto_home";
@@ -65,7 +61,7 @@ public class ProjetoController {
 	@GetMapping(value = "/planning/{id}")
 	public String planning(@PathVariable("id") String id, Model model) {
 		System.out.println("Consulta ao banco de dados ID");
-		Projeto projeto = projetoService.getProjeto(id);
+		Projeto projeto = projetoService.get(id);
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
 		return "projeto/sprint_planning";

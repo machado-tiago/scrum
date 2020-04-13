@@ -18,6 +18,7 @@ public class ColabService {
 	}
 
 	public void add(Colaborador colab) {
+		colab.setId(null);
 		colabRepository.save(colab);
 	}
 }
