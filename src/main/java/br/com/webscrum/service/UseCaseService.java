@@ -23,11 +23,12 @@ public class UseCaseService {
 		return usecase;
 	}
 
-	public void merge(UseCase usecase) {
+	public void merge(String id, UseCase usecase) {
+		usecase.setId(Integer.valueOf(id));
 		useCaseRepository.save(usecase);
 	}
 
-	public UseCase get(Integer integer) {
-		return useCaseRepository.getOne(integer);
+	public UseCase get(String id) {
+		return useCaseRepository.getOne(Integer.valueOf(id));
 	}
 }

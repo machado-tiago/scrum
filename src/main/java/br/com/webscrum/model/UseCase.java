@@ -73,5 +73,10 @@ public class UseCase {
 		// colocar depois a data de criação
 	}
 
+	@Override
+	public String toString() {
+		return String.format("UseCase: [id=%s, usecase=%s, prioridade=%s, ator=%s, status=%s, requirements=%s]", id,
+				usecase, prioridade, ator, status, requirements);
+	}
 
 }

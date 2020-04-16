@@ -41,34 +41,31 @@
 					<button data-toggle="modal" data-target="#usecase-modal" class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</button>
 					
 				</div>
-				<table class="table table-hover table-sm">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Use Case</th>
-							<th>Ator</th>
-							<th>Prioridade</th>
-							<th>Status</th>
-							<th>Requisitos</th>
-							<th></th><!-- Editar -->
-							
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="uc" items="${projeto.getSprint(0).usecases}" varStatus="loop">
+					<table class="table table-hover table-sm">
+						<thead>
 							<tr>
-								<td>${loop.count}</td>
-								<td>${uc.usecase}</td>
-								<td>${uc.ator}</td>
-								<td>${uc.prioridade}</td>
-								<td>${uc.status}</td>
-								<td>
-									<a href='<c:url value="/req/${uc.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
-								</td>
+								<th>#</th>
+								<th>Use Case</th>
+								<th>Prioridade</th>
+								<th>Status</th>
+								<th></th>
+								
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach var="uc" items="${projeto.getSprint(0).usecases}" varStatus="loop">
+								<tr>
+									<td>${loop.count}</td>
+									<td>${uc.usecase}</td>
+									<td>${uc.prioridade}</td>
+									<td>${uc.status}</td>
+									<td>
+										<a href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 			</div>
 		</div>			
 	</section>	
