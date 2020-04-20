@@ -13,4 +13,5 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
 
 	@Query("select p from Projeto p where status=null or status <> 'concluído' or status <> 'cancelado' ")
 	List<Projeto> currentProjects();
+
 }

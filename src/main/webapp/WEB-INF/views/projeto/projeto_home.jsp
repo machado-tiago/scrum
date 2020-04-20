@@ -23,11 +23,7 @@
 				${mensagemForm}
 			</div>
 		</c:if>
-		<div class="row align-items-start py-3">
-			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Planning</a>
-			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2 mr-2">Sprint Atual</a>
-			<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-pill badge-secondary p-2">Editar</a>
-		</div>
+
 		<div class="row  align-items-center py-3">
 			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
 			<div class="ml-auto col-6">
@@ -58,7 +54,13 @@
 					</c:forEach>
 				</select>		
 			</div>
-		</div>			
+		</div>		
+		
+		<div class="row align-items-start p-3">
+			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Planning</a>
+			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Atual</a>
+			<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-secondary p-2">Editar</a>
+		</div>	
 	</section>
 	
 		

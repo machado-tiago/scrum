@@ -27,16 +27,33 @@ public class ProjetoService {
 	}
 
 	public void add(Projeto projeto) {
-		Sprint sprint = new Sprint();
-		sprint.setDescricao("Product Backlog");
-		sprintService.add(sprint); // está salvando corretamente no banco de dados e o objeto já retorna o id
-		projeto.newProject(sprint);
 		projeto.setId(null);
 		projetoRepository.save(projeto);
+
+		Sprint sprint = new Sprint();
+		sprint.setDescricao("Product Backlog");
+		sprint.setProjeto(projeto);
+		sprintService.add(sprint);
 	}
 
-	public Projeto get(String id) {
-		return projetoRepository.getOne(Integer.valueOf(id));
+	public ProjetoRepository getProjetoRepository() {
+		return projetoRepository;
+	}
+
+	public void setProjetoRepository(ProjetoRepository projetoRepository) {
+		this.projetoRepository = projetoRepository;
+	}
+
+	public SprintService getSprintService() {
+		return sprintService;
+	}
+
+	public void setSprintService(SprintService sprintService) {
+		this.sprintService = sprintService;
+	}
+
+	public Projeto get(Integer id) {
+		return projetoRepository.getOne(id);
 	}
 
 	public Projeto merge(Projeto projeto) {

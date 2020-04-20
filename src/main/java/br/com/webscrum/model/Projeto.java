@@ -1,6 +1,5 @@
 package br.com.webscrum.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,17 +25,13 @@ public class Projeto {
 	@Autowired
 	@ManyToMany
 	private List<Colaborador> colaboradores;
-	@OneToMany
-	private List<Sprint> sprints = new ArrayList<>();// com autowired não estava funcionando
+	@OneToMany(mappedBy = "projeto")
+	private List<Sprint> sprints;
 	private Integer sprintAtual;
 	
 	public Projeto() {
-	}
-
-	public void newProject(Sprint sprint) {
-		this.setStatus("Planejamento e Arquitetura");
+		this.setStatus("análise e planejamento");
 		this.sprintAtual = 0;
-		this.addSprint(sprint);
 	}
 
 	public void addSprint(Sprint sprint) {
@@ -173,6 +168,31 @@ public class Projeto {
 
 	public void setSprints(List<Sprint> sprints) {
 		this.sprints = sprints;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Projeto other = (Projeto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

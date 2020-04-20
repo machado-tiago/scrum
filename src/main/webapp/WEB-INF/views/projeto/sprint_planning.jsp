@@ -48,20 +48,18 @@
 								<th>Use Case</th>
 								<th>Prioridade</th>
 								<th>Status</th>
-								<th></th>
 								
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="uc" items="${projeto.getSprint(0).usecases}" varStatus="loop">
 								<tr>
-									<td>${loop.count}</td>
+									<td>
+										<a href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="w-100 btn btn-secondary btn-sm">${loop.count}</a>
+									</td>
 									<td>${uc.usecase}</td>
 									<td>${uc.prioridade}</td>
 									<td>${uc.status}</td>
-									<td>
-										<a href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
-									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -87,15 +85,26 @@
 			            <form action="<c:url value="/usecase/add" context="/" />" method="post" name="addusecase">
 							<input hidden="true" name="id" value="${projeto.id}"></input>
 
+
+			              <div class="form-group">
+			                <label for="usecase">Use Case</label>
+			                <input type="text" name="usecase" id="usecase" class="form-control" placeholder="caso de uso" required>
+			              </div>
+			              
 			              <div class="form-group">
 			                <label for="ator">Ator</label>
 			                <input type="text" name="ator" id="ator" class="form-control" placeholder="ator" required>
 			              </div>
 		
 		            	<div class="form-group">
-				                <label for="usecase">Use Case</label>
-				                <textarea rows="7" name="usecase" id="usecase" class="form-control" placeholder="descreva aqui o caso de uso" required></textarea>
+				                <label for="descricao">Descrição</label>
+				                <textarea rows="7" name="descricao" id="descricao" class="form-control" placeholder="descreva aqui o caso de uso" required></textarea>
 			              </div>
+			              
+			             <div class="form-group">
+			                <label for="fluxoAlternativo">Fluxo Alternativo</label>
+			                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control" placeholder="descreva o fluxo alternativo"></textarea>
+			             </div>
 			              
 			              <div class="form-group">
 			                <label for="prioridade">Prioridade</label>

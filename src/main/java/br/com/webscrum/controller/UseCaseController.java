@@ -42,13 +42,8 @@ public class UseCaseController {
 			model.addAttribute("mensagemForm", "Erro! Campo obrigatório não preenchido." + result.toString());
 			return "projeto/form";
 		} else {
-			projeto = projetoService.get(Integer.toString(projeto.getId())); // só traz do model o que está lá, então
-																				// tem q puxar do banco
-			sprint = projeto.getSprint(0); // define o sprint que será registrado o novo caso de uso como o 0,
-											// ProductBacklog
-			sprint.addUseCase(usecaseService.add(usecase));// falta salvar essa mudança no banco
-			System.out.println(projeto.toString());
-			sprintService.merge(sprint);
+			usecaseService.add(projeto.getId(), usecase);
+
 			attributes.addFlashAttribute("mensagemForm",
 					"Novo Caso de uso Cadastrado com Sucesso!");
 			return "redirect:../projeto/planning/" + projeto.getId();
@@ -66,8 +61,14 @@ public class UseCaseController {
 	public String openUseCase(@PathVariable("id_projeto") String id_projeto, @PathVariable("id_uc") String id_uc,
 			Projeto projeto, Model model) {
 		model.addAttribute("usecase", usecaseService.get(id_uc));
-		model.addAttribute("projeto", projetoService.get(id_projeto));
+		model.addAttribute("projeto", projetoService.get(Integer.valueOf(id_projeto)));
 		return "projeto/usecase";
+	}
+
+	@PostMapping("/del/{id_projeto}/{id_uc}")
+	public String delUseCase(@PathVariable("id_projeto") String id_projeto, @PathVariable("id_uc") String id_uc) {
+		usecaseService.delete(id_uc);
+		return "redirect: ../../../../../projeto/planning/" + id_projeto;
 	}
 
 }

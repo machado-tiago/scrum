@@ -27,21 +27,18 @@
 					<th>Status</th>
 					<th>Product Owner</th>
 					<th>Scrum Master</th>
-					<th></th>
 					
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="projeto" items="${projetos}" varStatus="loop">
-					<tr><!-- colocar um link em cada linha -->
-						<td>${loop.count}</td>
+					<tr>
+						<td><a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="w-75 btn btn-secondary btn-sm">${loop.count}</a></td>
 						<td>${projeto.nome}</td>
 						<td>${projeto.status}</td>
 						<td></td>
 						<td></td>
-						<td>
-							<a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="btn btn-secondary btn-sm">abrir</a>
-						</td>
+							
 					</tr>
 				</c:forEach>
 			</tbody>

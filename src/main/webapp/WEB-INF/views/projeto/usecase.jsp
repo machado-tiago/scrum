@@ -19,16 +19,28 @@
 	<section class="container">
 		<div class="row  align-items-center py-3">
 			<h3 class="col-6  my-3">Use Case</h3>
+			<button class="btn btn-outline-danger mr-3 ml-auto" data-toggle="modal" data-target="#uc_exclude-modal" type="button">Excluir</button>
 		</div>
 		<form action="<c:url value="/usecase/merge/${projeto.id}/${usecase.id}" context="/" />" method="post" name="addusecase">
+
+	             <div class="form-group">
+	               <label for="usecase">Caso de Uso</label>
+	               <input value="${usecase.usecase}" type="text" name="usecase" id="usecase" class="form-control" required>
+	             </div>
+
 	             <div class="form-group">
 	               <label for="ator">Ator</label>
-	               <input value="${usecase.ator}" type="text" name="ator" id="ator" class="form-control" placeholder="ator" required>
+	               <input value="${usecase.ator}" type="text" name="ator" id="ator" class="form-control" required>
 	             </div>
 	
 	          	<div class="form-group">
-	                <label for="usecase">Use Case</label>
-	                <textarea rows="7" name="usecase" id="usecase" class="form-control" placeholder="descreva aqui o caso de uso" required>${usecase.usecase}</textarea>
+	                <label for="descricao">Descrição</label>
+	                <textarea rows="7" name="descricao" id="descricao" class="form-control" required>${usecase.descricao}</textarea>
+	             </div>
+	             
+         	     <div class="form-group">
+	                <label for="fluxoAlternativo">Fluxo Alternativo</label>
+	                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control">${usecase.fluxoAlternativo}</textarea>
 	             </div>
 	             
 	             <div class="form-group">
@@ -61,6 +73,34 @@
 
 		
 	<c:import url="../templates/footer.jsp"></c:import>
+	
+	<div class="modal" id="uc_exclude-modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header alert alert-danger">
+	        <h5 class="modal-title ">Confirmar Exclusão!</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="card-body">
+	            <form method="post" action="<c:url context="/" value="/usecase/del/${projeto.id}/${usecase.id}" /> ">
+	            	<div class="form-group">
+		                <p>Tem certeza que deseja excluir o registro?
+		                Essa ação não poderá ser desfeita.</p>
+	              </div>
+	              
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+			        <button type="submit" class="btn btn-danger">Excluir</button>
+			      </div>
+	            </form>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

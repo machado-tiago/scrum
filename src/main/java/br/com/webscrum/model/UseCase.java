@@ -1,12 +1,14 @@
 package br.com.webscrum.model;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,14 +17,52 @@ public class UseCase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String usecase;
+	private String descricao;
+	private String fluxoAlternativo;
+	private File diagramaSequencia;
+
 	private String prioridade;
 	private String ator;
 	private String status;
-	@OneToMany
-	private List<Requirement> requirements = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "sprint_id")
+	private Sprint sprint;
+	@OneToMany(mappedBy = "usecase")
+	private List<Requirement> requirements;
 
 	public Integer getId() {
 		return id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public File getDiagramaSequencia() {
+		return diagramaSequencia;
+	}
+
+	public String getFluxoAlternativo() {
+		return fluxoAlternativo;
+	}
+
+	public void setFluxoAlternativo(String seqAlternativa) {
+		this.fluxoAlternativo = seqAlternativa;
+	}
+
+	public void setDiagramaSequencia(File diagramaSequencia) {
+		this.diagramaSequencia = diagramaSequencia;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public Sprint getSprint() {
+		return sprint;
+	}
+
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
 	}
 
 	public String getStatus() {
@@ -69,7 +109,7 @@ public class UseCase {
 	}
 
 	public UseCase() {
-		this.setStatus("planejamento");
+		this.setStatus("Planejamento");
 		// colocar depois a data de criação
 	}
 
@@ -77,6 +117,31 @@ public class UseCase {
 	public String toString() {
 		return String.format("UseCase: [id=%s, usecase=%s, prioridade=%s, ator=%s, status=%s, requirements=%s]", id,
 				usecase, prioridade, ator, status, requirements);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UseCase other = (UseCase) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

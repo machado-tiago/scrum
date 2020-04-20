@@ -52,7 +52,7 @@ public class ProjetoController {
 	@GetMapping(value = "/{id}")
 	public String abrir(@PathVariable("id") String id, Model model) {
 		System.out.println("Consulta ao banco de dados ID");
-		Projeto projeto = projetoService.get(id);
+		Projeto projeto = projetoService.get(Integer.valueOf(id));
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
 		return "projeto/projeto_home";
@@ -61,7 +61,7 @@ public class ProjetoController {
 	@GetMapping(value = "/planning/{id}")
 	public String planning(@PathVariable("id") String id, Model model) {
 		System.out.println("Consulta ao banco de dados ID");
-		Projeto projeto = projetoService.get(id);
+		Projeto projeto = projetoService.get(Integer.valueOf(id));
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
 		return "projeto/sprint_planning";
