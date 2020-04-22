@@ -29,7 +29,6 @@ public class ProjetoController {
 
 	@GetMapping(value = { "/all" })
 	public String projetos(Model model) {
-		System.out.println("Consulta ao banco de dados");
 		List<Projeto> projetos = projetoService.currentProjects();
 		model.addAttribute("projetos", projetos);
 		return "home";
@@ -51,7 +50,6 @@ public class ProjetoController {
 
 	@GetMapping(value = "/{id}")
 	public String abrir(@PathVariable("id") String id, Model model) {
-		System.out.println("Consulta ao banco de dados ID");
 		Projeto projeto = projetoService.get(Integer.valueOf(id));
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
@@ -60,7 +58,6 @@ public class ProjetoController {
 
 	@GetMapping(value = "/planning/{id}")
 	public String planning(@PathVariable("id") String id, Model model) {
-		System.out.println("Consulta ao banco de dados ID");
 		Projeto projeto = projetoService.get(Integer.valueOf(id));
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());

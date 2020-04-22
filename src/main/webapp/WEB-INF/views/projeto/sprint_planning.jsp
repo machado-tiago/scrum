@@ -23,12 +23,12 @@
 				<div class="d-flex justify-content-end  align-items-center">
 					<div class="ml-auto">
 						<strong >Sprint Atual: </strong>	
-						<p class="m-0 text-center">${projeto.sprintAtual}</p>
+						<p class="m-0 text-center">${projeto.getSprintAtualIndex()}</p>
 					</div>
 					
 					<div class="ml-5">
 						<strong>Status: </strong>
-						<p class="m-0">${projeto.status.toUpperCase()}</p>
+						<p class="m-0">${projeto.projectStatus.descricao}</p>
 					</div>
 					
 				</div>
@@ -52,14 +52,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="uc" items="${projeto.getSprint(0).usecases}" varStatus="loop">
+							<c:forEach var="uc" items="${projeto.sprints.get(0).usecases}" varStatus="loop">
 								<tr>
 									<td>
 										<a href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="w-100 btn btn-secondary btn-sm">${loop.count}</a>
 									</td>
 									<td>${uc.usecase}</td>
 									<td>${uc.prioridade}</td>
-									<td>${uc.status}</td>
+									<td>${uc.useCaseStatus.descricao}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -97,8 +97,8 @@
 			              </div>
 		
 		            	<div class="form-group">
-				                <label for="descricao">Descrição</label>
-				                <textarea rows="7" name="descricao" id="descricao" class="form-control" placeholder="descreva aqui o caso de uso" required></textarea>
+				                <label for="userstory">User Story</label>
+				                <textarea rows="7" name="userstory" id="userstory" class="form-control" placeholder="descreva aqui a história do usuário" required></textarea>
 			              </div>
 			              
 			             <div class="form-group">

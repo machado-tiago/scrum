@@ -21,7 +21,6 @@ public class Sprint {
 	@ManyToOne
 	@JoinColumn(name = "projeto_id")
 	private Projeto projeto;
-
 	@OneToMany(mappedBy = "sprint")
 	private List<UseCase> usecases;
 
@@ -37,17 +36,6 @@ public class Sprint {
 		this.projeto = projeto;
 	}
 
-	private Integer getUseCaseIndex(UseCase usecase) {
-		return usecases.indexOf(usecase);
-	}
-
-	public void addUseCase(UseCase usecase) {
-		usecases.add(usecase);
-	}
-
-	public boolean removeUseCase(UseCase usecase) {
-		return usecases.remove(usecase);
-	}
 
 	public List<UseCase> getUsecases() {
 		return usecases;

@@ -11,7 +11,7 @@ import br.com.webscrum.model.Projeto;
 @Repository
 public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
 
-	@Query("select p from Projeto p where status=null or status <> 'concluído' or status <> 'cancelado' ")
+	@Query("select p from Projeto p where project_status <> 'CONCLUIDO' or project_status <> 'CANCELADO' ")
 	List<Projeto> currentProjects();
 
 }

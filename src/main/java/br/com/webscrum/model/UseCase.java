@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,13 +19,13 @@ public class UseCase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String usecase;
-	private String descricao;
+	private String userstory;
 	private String fluxoAlternativo;
 	private File diagramaSequencia;
-
 	private String prioridade;
 	private String ator;
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private UseCaseStatus useCaseStatus;
 	@ManyToOne
 	@JoinColumn(name = "sprint_id")
 	private Sprint sprint;
@@ -34,8 +36,8 @@ public class UseCase {
 		return id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getUserstory() {
+		return userstory;
 	}
 
 	public File getDiagramaSequencia() {
@@ -54,8 +56,8 @@ public class UseCase {
 		this.diagramaSequencia = diagramaSequencia;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setUserstory(String descricao) {
+		this.userstory = descricao;
 	}
 	public Sprint getSprint() {
 		return sprint;
@@ -65,13 +67,6 @@ public class UseCase {
 		this.sprint = sprint;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -109,14 +104,22 @@ public class UseCase {
 	}
 
 	public UseCase() {
-		this.setStatus("Planejamento");
+		this.setUseCaseStatus(UseCaseStatus.USERSTORY);
 		// colocar depois a data de criação
+	}
+
+	public UseCaseStatus getUseCaseStatus() {
+		return useCaseStatus;
+	}
+
+	public void setUseCaseStatus(UseCaseStatus useCaseStatus) {
+		this.useCaseStatus = useCaseStatus;
 	}
 
 	@Override
 	public String toString() {
 		return String.format("UseCase: [id=%s, usecase=%s, prioridade=%s, ator=%s, status=%s, requirements=%s]", id,
-				usecase, prioridade, ator, status, requirements);
+				usecase, prioridade, ator, useCaseStatus, requirements);
 	}
 
 	@Override

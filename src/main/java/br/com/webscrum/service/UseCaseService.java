@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.webscrum.model.Projeto;
-import br.com.webscrum.model.Sprint;
 import br.com.webscrum.model.UseCase;
 import br.com.webscrum.repository.SprintRepository;
 import br.com.webscrum.repository.UseCaseRepository;
@@ -18,6 +17,9 @@ public class UseCaseService {
 
 	@Autowired
 	ProjetoService projetoService;
+
+	@Autowired
+	SprintRepository sprintRepository;
 
 	public UseCaseRepository getUseCaseRepository() {
 		return useCaseRepository;
@@ -35,8 +37,6 @@ public class UseCaseService {
 		this.sprintRepository = sprintRepository;
 	}
 
-	@Autowired
-	SprintRepository sprintRepository;
 
 	public List<UseCase> getAll() {
 		return useCaseRepository.findAll();
@@ -45,7 +45,7 @@ public class UseCaseService {
 	public UseCase add(Integer projeto_id, UseCase usecase) {
 		Projeto projeto = projetoService.get(projeto_id); // só traz do model o que está lá,
 																					// então tem q puxar do banco
-		usecase.setSprint(projeto.getSprint(0));
+		usecase.setSprint(projeto.getSprints().get(0));
 		usecase.setId(null);// sistema está trazendo os atributos do novo use case com o id do antigo
 		useCaseRepository.save(usecase);
 		System.out.println(projeto.toString());
@@ -53,6 +53,7 @@ public class UseCaseService {
 	}
 
 	public void merge(String id, UseCase usecase) {
+		usecase.setSprint(this.get(id).getSprint());
 		usecase.setId(Integer.valueOf(id));
 		useCaseRepository.save(usecase);
 	}
@@ -62,11 +63,10 @@ public class UseCaseService {
 	}
 
 	public void delete(String id_uc) {
-		UseCase usecase = useCaseRepository.getOne(Integer.valueOf(id_uc));
-		System.out.println(usecase.getSprint());
-		Sprint sprint = usecase.getSprint();
-		sprint.removeUseCase(usecase);
-		sprintRepository.save(sprint);
+//		UseCase usecase = useCaseRepository.getOne(Integer.valueOf(id_uc));
+//		Sprint sprint = usecase.getSprint();
+//		sprint.removeUseCase(usecase);
+//		sprintRepository.save(sprint);
 		useCaseRepository.deleteById(Integer.valueOf(id_uc));
 	}
 }

@@ -30,12 +30,12 @@
 				<div class="d-flex justify-content-end  align-items-center">
 					<div class="ml-auto">
 						<div class="text-center"><strong>Sprint Atual: </strong></div>	
-						<p class="m-0 text-center">${projeto.sprintAtual}</p>
+						<p class="m-0 text-center">${projeto.getSprintAtualIndex()}</p>
 					</div>
 					
 					<div class="ml-5">
 						<strong>Status: </strong>
-						<p class="m-0">${projeto.status.toUpperCase()}</p>
+						<p class="m-0">${projeto.projectStatus.descricao}</p>
 					</div>
 					
 				</div>

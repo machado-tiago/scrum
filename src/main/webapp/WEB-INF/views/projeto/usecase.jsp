@@ -34,8 +34,8 @@
 	             </div>
 	
 	          	<div class="form-group">
-	                <label for="descricao">Descrição</label>
-	                <textarea rows="7" name="descricao" id="descricao" class="form-control" required>${usecase.descricao}</textarea>
+	                <label for="userstory">Descrição</label>
+	                <textarea rows="7" name="userstory" id="userstory" class="form-control" required>${usecase.userstory}</textarea>
 	             </div>
 	             
          	     <div class="form-group">
@@ -54,15 +54,18 @@
 	               </select>
 	             </div>
 	             
+				
+				<!-- SALVAR NO RESUMO	              -->
 	              <div class="form-group">
-	               <label for="status">Status</label>
-	               <select name="status" id="status" class="form-control">
-	               	<option selected="selected" hidden="true"> ${usecase.status} </option>
-	               	<option>Planejamento</option>
-	               	<option>Execução</option>
-	               	<option>Concluído</option>
+	               <label for="usecasestatus">Status</label>
+	               <select name="usecasestatus" id="stausecasestatus" class="form-control">
+	               	<option selected="selected" hidden="true"> ${usecase.getUseCaseStatus().ordinal()+1} - ${usecase.useCaseStatus.descricao} </option>
+	               	<c:forEach var="item" items="${usecasestatus}" varStatus="loop" >
+	               		<option value="${item}"> ${loop.count} - ${item.descricao}</option>
+	               	</c:forEach>
 	               </select>
 	             </div>
+	             
 			  <br>
 		      <div class="modal-footer">
 		        <a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" type="button" class="btn btn-secondary">Voltar</a>

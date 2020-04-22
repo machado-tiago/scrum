@@ -3,6 +3,8 @@ package br.com.webscrum.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,11 +19,11 @@ public class Projeto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private double orcamento;
-
 	@javax.validation.constraints.NotEmpty
 	private String nome;
 	private String objetivo;
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private ProjectStatus projectStatus;
 	@Autowired
 	@ManyToMany
 	private List<Colaborador> colaboradores;
@@ -30,12 +32,16 @@ public class Projeto {
 	private Integer sprintAtual;
 	
 	public Projeto() {
-		this.setStatus("análise e planejamento");
+		this.projectStatus = ProjectStatus.INITIATION;
 		this.sprintAtual = 0;
 	}
 
-	public void addSprint(Sprint sprint) {
-		sprints.add(sprint);
+	public ProjectStatus getProjectStatus() {
+		return projectStatus;
+	}
+
+	public void setProjectStatus(ProjectStatus projectStatus) {
+		this.projectStatus = projectStatus;
 	}
 
 	public String printSprints() {
@@ -46,43 +52,35 @@ public class Projeto {
 		return sprintList;
 	}
 
-	public Integer getIndexSprintAtual() {
-		return this.sprintAtual;
-	}
 
-	public Integer getSprintAtual() {
+	public Integer getSprintAtualIndex() {
 		return this.sprintAtual;
 
 	}
 
-	public Sprint getSprint(Integer index) {
-		return this.sprints.get(index);
-
+	public Sprint getSprintAtual() {
+		return this.sprints.get(getSprintAtualIndex());
 	}
 
-	public Sprint sprintAtual() {
-		return this.sprints.get(getIndexSprintAtual());
+	public void setSprintAtual(Sprint sprint) {
+		this.getSprintAtual().setAtual(false);
+		sprint.setAtual(true);
+		this.sprintAtual = this.getSprintIndex(sprint);
 	}
 
 	private Integer getSprintIndex(Sprint sprint) {
 		return sprints.indexOf(sprint);
 	}
 
-	public void setSprintAtual(Sprint sprint) {
-		this.sprintAtual().setAtual(false);
-		sprint.setAtual(true);
-		this.sprintAtual = this.getSprintIndex(sprint);
-	}
-
 	public void setSprintAtual(Integer integer) {
-		this.sprintAtual().setAtual(false);
+		this.getSprintAtual().setAtual(false);
 		sprints.get(integer).setAtual(true);
 		this.sprintAtual = integer;
 	}
 
 
 	public boolean isEncerrado() {
-		if (status == "cancelado" | status == "encerrado") {
+		if (projectStatus.name() == "CANCELADO" | projectStatus.name() == "CONCLUIDO") {
 			return true;
 		} else {
 			return false;
@@ -91,8 +89,12 @@ public class Projeto {
 
 	@Override
 	public String toString() {
-		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s, Sprints: %s", id, nome, status,
-				this.printColabs(), this.printSprints());
+		return String.format("Projeto - Id: %s, Nome: %s, Status: %s, Colaboradores: %s, Sprints: %s", 
+				id,
+				nome,
+				this.projectStatus.getDescricao(),
+				this.printColabs(),
+				this.printSprints());
 	}
 
 	public String printColabs() {
@@ -109,10 +111,6 @@ public class Projeto {
 
 	public void removerColab(Colaborador colaborador) {
 		colaboradores.remove(colaboradores.indexOf(colaborador));
-	}
-
-	public void delSprint(Sprint sprint) {
-		sprints.remove(sprint);
 	}
 
 	public Integer getId() {
@@ -146,12 +144,12 @@ public class Projeto {
 		this.objetivo = objetivo;
 	}
 
-	public String getStatus() {
-		return status;
+	public ProjectStatus getUseCaseStatus() {
+		return projectStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(ProjectStatus projectStatus) {
+		this.projectStatus = projectStatus;
 	}
 
 	public List<Colaborador> getColaboradores() {
@@ -194,5 +192,6 @@ public class Projeto {
 			return false;
 		return true;
 	}
+
 
 }

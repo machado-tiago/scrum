@@ -35,7 +35,7 @@
 					<tr>
 						<td><a href='<c:url value="/projeto/${projeto.id}" context="/"></c:url>' class="w-75 btn btn-secondary btn-sm">${loop.count}</a></td>
 						<td>${projeto.nome}</td>
-						<td>${projeto.status}</td>
+						<td>${projeto.projectStatus.descricao}</td>
 						<td></td>
 						<td></td>
 							
