@@ -29,11 +29,9 @@ public class ProjetoService {
 	public void add(Projeto projeto) {
 		projeto.setId(null);
 		projetoRepository.save(projeto);
-
-		Sprint sprint = new Sprint();
+		Sprint sprint = sprintService.add(projeto);
 		sprint.setDescricao("Product Backlog");
-		sprint.setProjeto(projeto);
-		sprintService.add(sprint);
+		sprintService.merge(sprint);
 	}
 
 	public ProjetoRepository getProjetoRepository() {

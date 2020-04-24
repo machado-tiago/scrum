@@ -10,14 +10,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link  type="text/css" rel="stylesheet" href="/css/sprints.css">
 	<title>Scrum App</title>
 </head>
 
 <body class="d-flex flex-column h-100 m-0 p-0 ">
 	<c:import url="../templates/nav.jsp"></c:import>
 	
-	<section class="container">
-		<div class="row  align-items-center py-3">
+	<section>
+	<div class="container">
+		<div class="row align-items-center py-3">
 			<h3 class="col-6  my-3">Sprint Planning - ${projeto.nome}</h3>
 			<div class="ml-auto col-6">
 				<div class="d-flex justify-content-end  align-items-center">
@@ -34,12 +36,13 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="d-flex justify-content-around">
 		<div class="row">
-			<div class="col-12 form-group">
+			<div class="col-3 mx-auto form-group">
 				<div>
 					<span>Product Backlog</span>
 					<button data-toggle="modal" data-target="#usecase-modal" class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</button>
-					
 				</div>
 					<table class="table table-hover table-sm">
 						<thead>
@@ -47,23 +50,58 @@
 								<th>#</th>
 								<th>Use Case</th>
 								<th>Prioridade</th>
-								<th>Status</th>
-								
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="uc" items="${projeto.sprints.get(0).usecases}" varStatus="loop">
-								<tr>
+								<tr draggable="true">
 									<td>
-										<a href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="w-100 btn btn-secondary btn-sm">${loop.count}</a>
+										<a id="ucopen" href='<c:url value="/usecase/open/${projeto.id}/${uc.id}" context="/"></c:url>' class="w-100 btn btn-secondary btn-sm">${loop.count}</a>
 									</td>
 									<td>${uc.usecase}</td>
 									<td>${uc.prioridade}</td>
-									<td>${uc.useCaseStatus.descricao}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+			</div>
+			<div class="col-6 mx-auto form-group">
+				<div>
+					<span>Sprints</span>
+					<a href='<c:url context="/" value="/${projeto.id}/sprint/add"> </c:url>' class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</a>
+				</div>
+			     <nav class="row bg-secondary">
+				      	<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
+					        	<a href="#sprint${loop.count}" class="col-1 sprints m-0 btn btn-sm btn-secondary" >SPRINT ${loop.count}</a>
+					     </c:forEach>
+			     </nav>
+					     <c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
+							<div class="sprints">
+				 					<table id="sprint${loop.count}" class="table table-hover table-sm">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Use Case</th>
+												<th>Prioridade</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+							      			<c:forEach var="casodeuso" items="${sprint.usecases}" varStatus="loop2">
+												<tr draggable="true">
+													<td>
+														<a id="ucopen" href='<c:url value="/usecase/open/${projeto.id}/${casodeuso.id}" context="/"></c:url>' class="w-100 btn btn-secondary btn-sm">${loop2.count}</a>
+													</td>
+													<td>${casodeuso.usecase}</td>
+													<td>${casodeuso.prioridade}</td>
+													<td>${casodeuso.useCaseStatus.getDescricao()}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+							</div>	
+					 	</c:forEach>
+				</div>	
 			</div>
 		</div>			
 	</section>	
@@ -88,12 +126,22 @@
 
 			              <div class="form-group">
 			                <label for="usecase">Use Case</label>
-			                <input type="text" name="usecase" id="usecase" class="form-control" placeholder="caso de uso" required>
+			                <input type="text" name="usecase" id="usecase" class="form-control" placeholder="nome do caso de uso" required>
 			              </div>
-			              
+			             
 			              <div class="form-group">
 			                <label for="ator">Ator</label>
 			                <input type="text" name="ator" id="ator" class="form-control" placeholder="ator" required>
+			              </div>
+			              <div class="form-group">
+			                <label for="prioridade">Prioridade</label>
+			                <select name="prioridade" id="prioridade" class="form-control">
+			                	<option selected="selected" hidden="true" value=""> -- selecione uma opção -- </option>
+			                	<option>Baixa</option>
+			                	<option>Média</option>
+			                	<option>Alta</option>
+			                	<option>Muito Alta</option>
+			                </select>
 			              </div>
 		
 		            	<div class="form-group">
@@ -106,16 +154,6 @@
 			                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control" placeholder="descreva o fluxo alternativo"></textarea>
 			             </div>
 			              
-			              <div class="form-group">
-			                <label for="prioridade">Prioridade</label>
-			                <select name="prioridade" id="prioridade" class="form-control">
-			                	<option selected="selected" hidden="true" value=""> -- selecione uma opção -- </option>
-			                	<option>Baixa</option>
-			                	<option>Média</option>
-			                	<option>Alta</option>
-			                	<option>Muito Alta</option>
-			                </select>
-			              </div>
 						  <br>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

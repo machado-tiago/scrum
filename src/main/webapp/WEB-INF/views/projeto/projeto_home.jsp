@@ -44,11 +44,11 @@
 		<div class="row">
 			<div class="col-9 form-group">
 				<label for="objetivo">Objetivos</label>
-				<textarea id="objetivo" name="objetivo" type="text" class="form-control" readonly >${projeto.objetivo}</textarea>
+				<textarea rows="7" id="objetivo" name="objetivo" type="text" class="form-control" readonly >${projeto.objetivo}</textarea>
 			</div>
 			<div class="col-3 form-group">
 				<label for="colaboradores">Equipe</label>
-				<select multiple readonly class="form-control" id="colaboradores" name="colaboradores">
+				<select multiple size="9" readonly class="form-control" id="colaboradores" name="colaboradores">
 					<c:forEach var="colab" items="${projeto.colaboradores}">
 						<option>${colab.nome}</option>
 					</c:forEach>

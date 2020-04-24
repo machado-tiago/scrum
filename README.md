@@ -1,5 +1,5 @@
 ﻿Resumo
-Esse projeto tem por objetivo desenvolver uma aplicação que suporte o ciclo de vida de projetos scrum, servindo como uma ferramenta para a gestão e suporte a execução de projetos.
+Esse projeto tem por objetivo desenvolver uma aplicação que suporte o ciclo de vida de projetos Scrum, servindo como uma ferramenta para a gestão e suporte a execução de projetos.
 A aplicação é web, de forma que o usuário tenha flexibilidade para acessar o sistema de qualquer localidade rapidamente.
 Principais tecnologias utilizadas: Java, Spring Boot, JSTL, Bootstrap, REST
 
@@ -11,7 +11,7 @@ Casos de Uso
 3) Eu como SM ou Product Owner, desejo cadastrar equipe do projeto.
 4) Eu como Product Owner, quero registrar, editar e priorizar os casos de uso (Product Backlog).
 5) Como equipe do projeto, devemos organizar o desenvolvimento em sprints, estimando o esforço de cada caso de uso (Sprint Backlog).
-6) Eu como SM, devo registrar o que que a equipe detalhar de requisitos e atividades para desenvolvimento e estimar prazos (Sprint Planning). #Como deve ser registrado o plano?
+6) Eu como SM, devo registrar o quê que a equipe detalhar de requisitos e atividades para desenvolvimento e estimar prazos (Sprint Planning). #Como deve ser registrado o plano?
 7) Como SM, devo nas reuniões diárias registrar os obstáculos e soluções, planejar o que será realizado nas próximas 24 horas por cada membro e no dia seguinte reportar a execução (Daily Scrums) ou até replanejar a sprint.
 8) Como equipe do projeto, devemos atualizar e acompanhar durante a execução do sprint (Daily Scrums), as métricas de desempenho (Burndown Chart e Kanban).
 9) Registrar feedbacks da apresentação da entrega do sprint (Sprint Review Meeting).

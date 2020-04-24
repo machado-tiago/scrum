@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.webscrum.model.Projeto;
 import br.com.webscrum.model.Sprint;
 import br.com.webscrum.repository.SprintRepository;
 
@@ -13,12 +14,23 @@ public class SprintService {
 	@Autowired
 	SprintRepository sprintRepository;
 
+	@Autowired
+	ProjetoService projetoService;
+
 	public List<Sprint> getAll() {
 		return sprintRepository.findAll();
 	}
 
-	public Sprint add(Sprint sprint) {
-		sprint.setId(null);
+	public Sprint add(Projeto projeto) {
+		Sprint sprint = new Sprint();
+		sprint.setProjeto(projeto);
+		sprintRepository.save(sprint);
+		return sprint;
+	}
+
+	public Sprint add(String projeto_id) {
+		Sprint sprint = new Sprint();
+		sprint.setProjeto(projetoService.get(Integer.valueOf(projeto_id)));
 		sprintRepository.save(sprint);
 		return sprint;
 	}

@@ -22,28 +22,19 @@
 			<button class="btn btn-outline-danger mr-3 ml-auto" data-toggle="modal" data-target="#uc_exclude-modal" type="button">Excluir</button>
 		</div>
 		<form action="<c:url value="/usecase/merge/${projeto.id}/${usecase.id}" context="/" />" method="post" name="addusecase">
-
+				
 	             <div class="form-group">
 	               <label for="usecase">Caso de Uso</label>
 	               <input value="${usecase.usecase}" type="text" name="usecase" id="usecase" class="form-control" required>
 	             </div>
 
-	             <div class="form-group">
+				<div class="row">
+	             <div class="form-group col-4">
 	               <label for="ator">Ator</label>
 	               <input value="${usecase.ator}" type="text" name="ator" id="ator" class="form-control" required>
 	             </div>
 	
-	          	<div class="form-group">
-	                <label for="userstory">Descrição</label>
-	                <textarea rows="7" name="userstory" id="userstory" class="form-control" required>${usecase.userstory}</textarea>
-	             </div>
-	             
-         	     <div class="form-group">
-	                <label for="fluxoAlternativo">Fluxo Alternativo</label>
-	                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control">${usecase.fluxoAlternativo}</textarea>
-	             </div>
-	             
-	             <div class="form-group">
+	             <div class="form-group col-4">
 	               <label for="prioridade">Prioridade</label>
 	               <select name="prioridade" id="prioridade" class="form-control">
 	               	<option selected="selected" hidden="true"> ${usecase.prioridade} </option>
@@ -55,16 +46,26 @@
 	             </div>
 	             
 				
-				<!-- SALVAR NO RESUMO	              -->
-	              <div class="form-group">
+	              <div class="form-group col-4">
 	               <label for="usecasestatus">Status</label>
 	               <select name="usecasestatus" id="stausecasestatus" class="form-control">
-	               	<option selected="selected" hidden="true"> ${usecase.getUseCaseStatus().ordinal()+1} - ${usecase.useCaseStatus.descricao} </option>
+	               	<option selected="selected" hidden="true" value="${usecase.useCaseStatus}"> ${usecase.getUseCaseStatus().ordinal()+1} - ${usecase.useCaseStatus.descricao} </option>
 	               	<c:forEach var="item" items="${usecasestatus}" varStatus="loop" >
 	               		<option value="${item}"> ${loop.count} - ${item.descricao}</option>
 	               	</c:forEach>
 	               </select>
 	             </div>
+				</div>
+	          	<div class="form-group">
+	                <label for="userstory">User Story</label>
+	                <textarea rows="7" name="userstory" id="userstory" class="form-control" required>${usecase.userstory}</textarea>
+	             </div>
+	             
+         	     <div class="form-group">
+	                <label for="fluxoAlternativo">Fluxo Alternativo</label>
+	                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control">${usecase.fluxoAlternativo}</textarea>
+	             </div>
+	             
 	             
 			  <br>
 		      <div class="modal-footer">

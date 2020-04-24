@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+	div.sprints table {
+		display: none;
+	}
+	
+	div.sprints table:target {
+		display: block;
+	}
+	
+	a.sprints{
+		width: 6em;
+	}
+	

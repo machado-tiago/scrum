@@ -18,12 +18,13 @@ public enum UseCaseStatus {
 	
 	private String descricao;
 
+	private UseCaseStatus(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
 
-	private UseCaseStatus(String descricao) {
-		this.descricao = descricao;
-	}
 
 }

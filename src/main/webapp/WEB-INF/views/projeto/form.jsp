@@ -36,13 +36,13 @@
 		
 				<div class="form-group">
 					<label for="objetivo">Objetivos*</label>
-					<textarea id="objetivo" name ="objetivo" rows="5" class="form-control" required></textarea>
+					<textarea id="objetivo" name ="objetivo" rows="7" class="form-control" required></textarea>
 				</div>
 
 				<div class="d-flex">
 					<div class="flex-fill mr-1">
 						<label for="colaboradores">Equipe</label>
-						<select multiple class="form-control" id="colaboradores" name="colaboradores">
+						<select size="7" multiple class="form-control" id="colaboradores" name="colaboradores">
 							<c:forEach var="colaborador" items="${listaColab}" >
 								<option value="${colaborador.id}">${colaborador.nome}</option>
 							</c:forEach>
