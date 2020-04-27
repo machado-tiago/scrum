@@ -2,13 +2,43 @@
 
 	div.sprints table {
 		display: none;
+		margin:0;
+		padding: 0;
 	}
 	
 	div.sprints table:target {
 		display: block;
+		margin:0;
+		padding: 0;
 	}
 	
 	a.sprints{
-		width: 6em;
+		height: 2em;
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+		font-weight: bold;
+		font-size: 11px;
+		border-color: #c0c0c0;
+		border-bottom: 0;
+		margin:1px;
+		
 	}
+	
+	.menu-botoes{
+		margin:0;
+		padding: 0;
+	}
+	
+	#quadro{
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
+		border-color: #c0c0c0;
+	}
+	#quadro:hover{
+		background-color: white;
+	}			
 	

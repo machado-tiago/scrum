@@ -8,8 +8,8 @@ public enum UseCaseStatus {
 		//SPRINTEXECUTION("Execução"), - Não precisa incluir, pois podemos reutilizar a outra EXECUCAO
 
 	USERSTORY("História do Usuário"),
-	ANALISE("Análise de Requisitos"),//requisitos serão mais detalhados nesse momento
-	DESIGN("Projeto"),
+	ANALISE("Análise de Requisitos"), // requisitos serão mais detalhados nesse momento - DIAGRAMA DE SEQUENCIA (utiliza os elementos conceito do modelo de Domínio)
+	DESIGN("Projeto"), // DIAGRAMA DE CLASSE
 	DEVELOPMENT("Implementação"),
 	TESTING("Teste"),//podemos especificar posteriormente os testes
 	DEPLOYMENT("Implantação"),

@@ -6,7 +6,7 @@ public enum ProjectStatus {
 							// definir objetivos do projeto, determinasr o escopo, os recursos e principais
 							// restrições
 	REQUIREMENTS("Análise de Requisitos"), // USER HISTORIES
-	DESIGN("Arquiterura e Projeto"),
+	DESIGN("Arquiterura e Projeto"), // MODELO DE DOMÍNIO, CONCEITUAL - DIAGRAMA DE SEQUENCIA DO SISTEMA? (NÃO DOS CASOS DE USO)
 	EXECUCAO("Execução"), 
 	CONCLUIDO("Concluído"),
 	CANCELADO("Cancelado");

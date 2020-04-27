@@ -17,7 +17,7 @@
 	<c:import url="../templates/nav.jsp"></c:import>
 	
 	<section class="container">
-		<div class="row  align-items-center py-3">
+		<div class="row align-items-center py-3">
 			<h3 class="col-6  my-3">Use Case</h3>
 			<button class="btn btn-outline-danger mr-3 ml-auto" data-toggle="modal" data-target="#uc_exclude-modal" type="button">Excluir</button>
 		</div>
