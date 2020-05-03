@@ -39,7 +39,7 @@ public class SprintService {
 		return sprintRepository.saveAndFlush(sprint);
 	}
 
-	public Sprint get(Integer integer) {
-		return sprintRepository.getOne(integer);
+	public Sprint get(String sprint_id) {
+		return sprintRepository.getOne(Integer.valueOf(sprint_id));
 	}
 }

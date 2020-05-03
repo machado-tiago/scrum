@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.webscrum.model.Projeto;
+import br.com.webscrum.model.Sprint;
 import br.com.webscrum.model.UseCase;
 import br.com.webscrum.model.UseCaseStatus;
 import br.com.webscrum.service.ProjetoService;
@@ -65,6 +66,27 @@ public class UseCaseController {
 	public String delUseCase(@PathVariable("id_projeto") String id_projeto, @PathVariable("id_uc") String id_uc) {
 		usecaseService.delete(id_uc);
 		return "redirect: ../../../../../projeto/planning/" + id_projeto;
+	}
+
+	@GetMapping("/{uc_id}/tosprint/{sprint_id}")
+	public String sendUC(@PathVariable("uc_id") String uc_id, @PathVariable("sprint_id") String sprint_id,
+			Model model, RedirectAttributes attributes) {
+		Sprint sprint = sprintService.get(sprint_id);
+		UseCase usecase = usecaseService.get(uc_id);
+		usecase.setSprint(sprint);
+		usecaseService.merge(uc_id, usecase);
+		model.addAttribute("sprint_id", sprint_id);
+		return "redirect:../../../projeto/planning/" + sprint.getProjeto().getId();
+	}
+
+	@GetMapping("/tobacklog/{uc_id}")
+	public String moveToBacklog(@PathVariable("uc_id") String uc_id, RedirectAttributes attribute, Model model) {
+		UseCase usecase = usecaseService.get(uc_id);
+		model.addAttribute("sprint_id", usecase.getSprint().getId());
+		Projeto projeto = usecase.getSprint().getProjeto();
+		usecase.setSprint(projeto.getSprints().get(0));
+		usecaseService.merge(uc_id, usecase);
+		return "redirect:../../projeto/planning/" + projeto.getId();
 	}
 
 }

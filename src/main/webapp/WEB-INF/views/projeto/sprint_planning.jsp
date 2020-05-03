@@ -16,7 +16,6 @@
 		var spclicked;
 		function sprintClicked(id){
 			spclicked = id;
-			alert(spclicked);
 		}
 		
 		function sendUC(uc_id){
@@ -76,7 +75,7 @@
 									<td>${uc.usecase}</td>
 									<td>${uc.prioridade}</td>
 									<td>
-										<a id="backlog${uc.id}" onclick="sendUC(${uc.id})" href="#" class="w-75 py-auto badge badge-pill badge-info">Send ></a>
+										<a id="backlog${uc.id}" onclick="sendUC(${uc.id})" href="#" class="py-1 px-2 badge badge-pill badge-info">Send ></a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -104,6 +103,7 @@
 											<th>Use Case</th>
 											<th>Prioridade</th>
 											<th>Status</th>
+											<th>Remove</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -115,6 +115,9 @@
 												<td>${casodeuso.usecase}</td>
 												<td>${casodeuso.prioridade}</td>
 												<td>${casodeuso.useCaseStatus.getDescricao()}</td>
+												<td>
+													<a id="uctobacklog" href='<c:url value="/usecase/tobacklog/${casodeuso.id}" context="/"></c:url>' class="w-50 h-50 btn btn-outline-danger btn-sm">X</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
