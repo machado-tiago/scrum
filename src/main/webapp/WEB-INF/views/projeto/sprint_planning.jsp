@@ -17,8 +17,8 @@
 		document.addEventListener('readystatechange', function() {
 		    if (document.readyState === "complete") {
 				spclicked = document.querySelector('.label-sprinthead').id;
+		// 		spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
 				document.getElementById(spclicked).style.backgroundColor = "#107381";
-		// 		var spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
 		    }
 	  	});
 		function sprintClicked(id){
