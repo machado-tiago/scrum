@@ -16,6 +16,7 @@
 		var spclicked;
 		function sprintClicked(id){
 			spclicked = id;
+			document.getElementById("a-sprint"+id).click(); 
 		}
 		
 		function sendUC(uc_id){
@@ -89,13 +90,15 @@
 				</div>
 					<nav class="d-flex flex-wrap menu-botoes">
 						<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
-					        	<a href="#sprint${loop.count}" onclick="sprintClicked(${sprint.id})" class="col-1 sprints m-0 btn btn-sm btn-info" >SPRINT ${loop.count}</a>
+							<label id="label-sprinthead${sprint.id}" for="sprinthead${sprint.id}" onclick="sprintClicked(${sprint.id})" class="col-1 sprints m-0 btn btn-sm btn-info">SPRINT ${loop.count}</label>
+							<input class="sprinthead" id="sprinthead${sprint.id}" name="sprint" type="radio" value="">
+							<a class="a-sprint" id="a-sprint${sprint.id}" href="#sprint${sprint.id}"></a>
 					     </c:forEach>
 					</nav>
 				<div id="quadro" class="h-100 border btn-outline-secondary">
 					<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
 						<div class="sprints ">
-			 					<table id="sprint${loop.count}" class="table table-hover table-sm">
+			 					<table id="sprint${sprint.id}" class="table table-hover table-sm">
 								<caption>SPRINT ${loop.count}</caption>
 									<thead>
 										<tr>
