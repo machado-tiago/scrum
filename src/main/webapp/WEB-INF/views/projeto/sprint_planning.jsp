@@ -13,10 +13,21 @@
 		<link  type="text/css" rel="stylesheet" href="/css/sprints.css">
 	
 	<script type="text/javascript">
-		var spclicked;
+		var spclicked;	
+		document.addEventListener('readystatechange', function() {
+		    if (document.readyState === "complete") {
+				spclicked = document.querySelector('.label-sprinthead').id;
+				document.getElementById(spclicked).style.backgroundColor = "#107381";
+		// 		var spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
+		    }
+	  	});
 		function sprintClicked(id){
+			if (spclicked!=null) {
+				document.getElementById(spclicked).style.backgroundColor = "#17a2b8";
+			}
 			spclicked = id;
-			document.getElementById("a-sprint"+id).click(); 
+			document.getElementById(spclicked).style.backgroundColor = "#107381";
+			document.getElementById("a-sprint"+spclicked).click(); 
 		}
 		
 		function sendUC(uc_id){
@@ -90,16 +101,15 @@
 				</div>
 					<nav class="d-flex flex-wrap menu-botoes">
 						<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
-							<label id="label-sprinthead${sprint.id}" for="sprinthead${sprint.id}" onclick="sprintClicked(${sprint.id})" class="col-1 sprints m-0 btn btn-sm btn-info">SPRINT ${loop.count}</label>
-							<input class="sprinthead" id="sprinthead${sprint.id}" name="sprint" type="radio" value="">
+							<label id="${sprint.id}"  for="sprintradio${sprint.id}" onclick="sprintClicked(${sprint.id})" class="col-1 sprints label-sprinthead m-0 btn btn-sm btn-info">SPRINT ${loop.count}</label>
+							<input class="sprinthead" id="sprintradio${sprint.id}" name="sprint" type="radio">
 							<a class="a-sprint" id="a-sprint${sprint.id}" href="#sprint${sprint.id}"></a>
 					     </c:forEach>
 					</nav>
-				<div id="quadro" class="h-100 border btn-outline-secondary">
+				<div id="quadro" class="h-100 border">
 					<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
 						<div class="sprints ">
 			 					<table id="sprint${sprint.id}" class="table table-hover table-sm">
-								<caption>SPRINT ${loop.count}</caption>
 									<thead>
 										<tr>
 											<th>#</th>
