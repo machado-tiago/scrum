@@ -15,19 +15,24 @@
 	<script type="text/javascript">
 		var spclicked;	
 		document.addEventListener('readystatechange', function() {
-		    if (document.readyState === "complete") {
+			if (document.readyState === "complete") {
 				spclicked = document.querySelector('.label-sprinthead').id;
 		// 		spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
+				ativarSprint();		
+			}	
+		});
+		
+		function ativarSprint(){
 				document.getElementById(spclicked).style.backgroundColor = "#107381";
-		    }
-	  	});
+				document.getElementById("a-sprint"+spclicked).click();
+		}
+		
 		function sprintClicked(id){
 			if (spclicked!=null) {
 				document.getElementById(spclicked).style.backgroundColor = "#17a2b8";
 			}
 			spclicked = id;
-			document.getElementById(spclicked).style.backgroundColor = "#107381";
-			document.getElementById("a-sprint"+spclicked).click(); 
+			ativarSprint();
 		}
 		
 		function sendUC(uc_id){
