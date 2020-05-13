@@ -2,10 +2,13 @@ package br.com.webscrum.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.webscrum.model.Sprint;
 import br.com.webscrum.service.SprintService;
 
 @Controller
@@ -17,8 +20,11 @@ public class SprintController {
 
 
 	@GetMapping("/add")
-	public String addUSprint(@PathVariable("id_projeto") String id_projeto) {
-		sprintService.add(id_projeto);
+	public String addUSprint(@PathVariable("id_projeto") String id_projeto, Model model,
+			RedirectAttributes attributes) {
+		Sprint sprintSelect = sprintService.add(id_projeto);
+		attributes.addFlashAttribute("sprintSelectedId", sprintSelect.getId());
+		System.out.println("SprintId: " + sprintSelect.getId());
 		return "redirect:../../projeto/planning/" + id_projeto;
 	}
 

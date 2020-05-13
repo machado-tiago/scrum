@@ -14,11 +14,15 @@
 	
 	<script type="text/javascript">
 		var spclicked;	
-		document.addEventListener('readystatechange', function() {
+		document.addEventListener('readystatechange', function sprintSelected() {
 			if (document.readyState === "complete") {
-				spclicked = document.querySelector('.label-sprinthead').id;
-		// 		spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
-				ativarSprint();		
+				if (""!="${sprintSelectedId}"){
+					spclicked= "${sprintSelectedId}";
+				}else{
+					spclicked = document.querySelector('.label-sprinthead').id;
+			// 		spclicked = document.getElementsByClassName('label-sprinthead')[0].id;
+				}
+				ativarSprint();
 			}	
 		});
 		

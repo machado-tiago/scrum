@@ -75,14 +75,14 @@ public class UseCaseController {
 		UseCase usecase = usecaseService.get(uc_id);
 		usecase.setSprint(sprint);
 		usecaseService.merge(uc_id, usecase);
-		model.addAttribute("sprint_id", sprint_id);
+		attributes.addFlashAttribute("sprintSelectedId", sprint.getId());
 		return "redirect:../../../projeto/planning/" + sprint.getProjeto().getId();
 	}
 
 	@GetMapping("/tobacklog/{uc_id}")
-	public String moveToBacklog(@PathVariable("uc_id") String uc_id, RedirectAttributes attribute, Model model) {
+	public String moveToBacklog(@PathVariable("uc_id") String uc_id, RedirectAttributes attributes, Model model) {
 		UseCase usecase = usecaseService.get(uc_id);
-		model.addAttribute("sprint_id", usecase.getSprint().getId());
+		attributes.addFlashAttribute("sprintSelectedId", usecase.getSprint().getId());
 		Projeto projeto = usecase.getSprint().getProjeto();
 		usecase.setSprint(projeto.getSprints().get(0));
 		usecaseService.merge(uc_id, usecase);
