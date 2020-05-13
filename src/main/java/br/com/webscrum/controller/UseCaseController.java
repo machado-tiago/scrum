@@ -47,9 +47,10 @@ public class UseCaseController {
 
 	@PostMapping("/merge/{id_projeto}/{id_uc}") // retirar o projeto
 	public String mergeUseCase(@PathVariable("id_projeto") String id_projeto, @PathVariable("id_uc") String id_uc,
-			@ModelAttribute UseCase usecase, Model model, UseCaseStatus usecasestatus) {
+			@ModelAttribute UseCase usecase, Model model, RedirectAttributes attributes, UseCaseStatus usecasestatus) {
 		usecase.setUseCaseStatus(usecasestatus);
 		usecaseService.merge(id_uc, usecase);
+		attributes.addFlashAttribute("sprintSelectedId", usecase.getSprint().getId());
 		return "redirect: ../../../../../projeto/planning/" + usecase.getSprint().getProjeto().getId();
 	}
 

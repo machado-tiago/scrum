@@ -69,7 +69,7 @@
 	             
 			  <br>
 		      <div class="modal-footer">
-		        <a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" type="button" class="btn btn-secondary">Voltar</a>
+		        <a href="<c:url value="/projeto/planning/${projeto.id}/${usecase.sprint.id}" context="/" />" type="button" class="btn btn-secondary">Voltar</a>
 		        <button type="submit" class="btn btn-primary">Salvar</button>
 		      </div>
            </form>

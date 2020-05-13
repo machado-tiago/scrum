@@ -64,4 +64,12 @@ public class ProjetoController {
 		return "projeto/sprint_planning";
 	}
 
+	@GetMapping(value = "/planning/{proj_id}/{sprint_id}")
+	public String backToSprint(@PathVariable("proj_id") String proj_id,@PathVariable("sprint_id") String sprint_id, Model model) {
+		Projeto projeto = projetoService.get(Integer.valueOf(proj_id));
+		model.addAttribute("projeto", projeto);
+		model.addAttribute("sprintSelectedId", sprint_id);
+		System.out.println(projeto.toString());
+		return "projeto/sprint_planning";
+	}
 }
