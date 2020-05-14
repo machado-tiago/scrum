@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-	div.sprints table {
+	div.sprints {
 		display: none;
 		margin:0;
 		padding: 0;
 	}
 	
-	div.sprints table:target {
+	div.sprints:target {
 		display: block;
 		margin:0 1em;
 		padding:0;
@@ -25,6 +25,7 @@
 		border-bottom: 0;
 		margin:1px;
 	}
+	
 	input.sprinthead{
 		display: none;	
 	}

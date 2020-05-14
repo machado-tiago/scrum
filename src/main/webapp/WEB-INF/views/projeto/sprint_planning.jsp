@@ -42,6 +42,19 @@
 		function sendUC(uc_id){
 			document.getElementById("backlog"+uc_id).href = "/usecase/" + uc_id + "/tosprint/" + spclicked;
 		}
+		
+		function calcFim(){
+			document.getElementById("salvar"+spclicked).disabled=false;
+			try {
+	 			var duracao =  parseInt(document.getElementById("duracao"+spclicked).value,10);
+				var inicio = new Date(document.getElementById("inicio"+spclicked).value);
+				var fim = new Date(inicio);
+				fim.setDate(inicio.getDate()+duracao);
+				document.getElementById("fim"+spclicked).value = fim.toISOString().substring(0,10);
+			} catch (e) {
+				console.log(e);
+			}
+		}
 	</script>	
 
 	<title>Scrum App</title>
@@ -117,8 +130,28 @@
 					</nav>
 				<div id="quadro" class="h-100 border">
 					<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
-						<div class="sprints ">
-			 					<table id="sprint${sprint.id}" class="table table-hover table-sm">
+						<div class="sprints" id="sprint${sprint.id}" >
+							<div class="input-group input-group-sm  align-items-center my-3 p-2">
+								<h4 class="mr-auto">Sprint</h4>
+								  	<div class="input-group-prepend col-2">
+										<label class="input-group-text " for="duracao">Dias</label>
+										<input onchange="calcFim()" id="duracao${sprint.id}" class="form-control form-control-sm" name="duracao" type="number" min="1" step="1" value="${sprint.duracao}">
+								  	</div>
+								  	<div class="input-group-prepend col-auto">
+										<label class="input-group-text " for="inicio">Início</label>
+										<input id="inicio${sprint.id}" onchange="calcFim()" class="form-control form-control-sm" name="inicio" type="date" value="">
+								  	</div>
+								  	<div class="input-group-prepend col-auto">
+										<label class="input-group-text " for="fim">Fim</label>
+										<input id="fim${sprint.id}" class="form-control form-control-sm" name="fim" readonly="readonly" type="date" value="">
+								  	</div>
+								  	<div class="ml-auto ">
+									  	<button id="salvar${sprint.id}" class="btn btn-sm btn-secondary" disabled="disabled" type="button">Salvar</button>
+									  	<button id="iniciar${sprint.id}" class="btn btn-sm btn-primary" disabled="disabled" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
+										<button id="excluir${sprint.id}" class="btn btn-sm btn-outline-danger"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>
+								  	</div>
+								</div>
+			 					<table class="table table-hover table-sm">
 									<thead>
 										<tr>
 											<th>#</th>

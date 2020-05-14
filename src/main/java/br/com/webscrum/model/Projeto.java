@@ -30,6 +30,7 @@ public class Projeto {
 	@OneToMany(mappedBy = "projeto")
 	private List<Sprint> sprints;
 	private Integer sprintAtual;
+	private String cliente;
 	// ####-----INCLUIR MODELO DE DOMÍNIO/DIAGRAMA DE CLASSE COMO ATRIBUTOS-----###
 	
 	public Projeto() {
@@ -39,6 +40,14 @@ public class Projeto {
 
 	public ProjectStatus getProjectStatus() {
 		return projectStatus;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
 
 	public void setProjectStatus(ProjectStatus projectStatus) {

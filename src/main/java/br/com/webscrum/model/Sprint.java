@@ -16,7 +16,7 @@ public class Sprint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-	private float duracao;
+	private int duracao;
 	private boolean atual;
 	@ManyToOne
 	@JoinColumn(name = "projeto_id")
@@ -24,8 +24,18 @@ public class Sprint {
 	@OneToMany(mappedBy = "sprint")
 	private List<UseCase> usecases;
 
-	public Sprint() {
+	private static int SPRINT_DURATION = 21;
+	
+	public static int getSPRINT_DURATION() {
+		return SPRINT_DURATION;
+	}
 
+	public static void setSPRINT_DURATION(int duration) {
+		SPRINT_DURATION = duration;
+	}
+
+	public Sprint() {
+		this.setDuracao(getSPRINT_DURATION());
 	}
 
 	public Projeto getProjeto() {
@@ -58,7 +68,7 @@ public class Sprint {
 		return duracao;
 	}
 
-	public void setDuracao(float duracao) {
+	public void setDuracao(int duracao) {
 		this.duracao = duracao;
 	}
 
