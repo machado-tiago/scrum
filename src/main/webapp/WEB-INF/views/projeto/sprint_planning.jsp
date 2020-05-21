@@ -44,7 +44,9 @@
 		}
 		
 		function calcFim(){
-			document.getElementById("salvar"+spclicked).disabled=false;
+			document.getElementById("salvar"+spclicked).style="display: inline;";
+			document.getElementById("iniciar"+spclicked).style="display: none;";
+			document.getElementById("excluir"+spclicked).style="display: none;";
 			try {
 	 			var duracao =  parseInt(document.getElementById("duracao"+spclicked).value,10);
 				var inicio = new Date(document.getElementById("inicio"+spclicked).value);
@@ -145,10 +147,10 @@
 										<label class="input-group-text " for="fim">Fim</label>
 										<input id="fim${sprint.id}" class="form-control form-control-sm" name="fim" readonly="readonly" type="date" value="">
 								  	</div>
-								  	<div class="ml-auto ">
-									  	<button id="salvar${sprint.id}" class="btn btn-sm btn-secondary" disabled="disabled" type="button">Salvar</button>
-									  	<button id="iniciar${sprint.id}" class="btn btn-sm btn-primary" disabled="disabled" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
-										<button id="excluir${sprint.id}" class="btn btn-sm btn-outline-danger"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>
+								  	<div class="ml-auto p-0 m-0 col-1">
+									  	<button id="salvar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" type="button" >Salvar</button>
+									  	<button id="iniciar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
+										<button id="excluir${sprint.id}" class="btn btn-sm btn-block btn-outline-danger m-0"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>
 								  	</div>
 								</div>
 			 					<table class="table table-hover table-sm">
