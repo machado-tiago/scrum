@@ -77,7 +77,7 @@
 					</div>
 					
 					<div class="ml-5">
-						<strong>Status: </strong>
+						<strong>Status Projeto: </strong>
 						<p class="m-0">${projeto.projectStatus.descricao}</p>
 					</div>
 					
@@ -86,8 +86,8 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div class="row w-100 px-5">
-			<div class="col-4 form-group">
+		<div class="row w-100 px-3">
+			<div class="col-auto form-group">
 				<div>
 					<span>Product Backlog</span>
 					<button data-toggle="modal" data-target="#usecase-modal" class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</button>
@@ -98,6 +98,7 @@
 								<th>#</th>
 								<th>Use Case</th>
 								<th>Prioridade</th>
+								<th>Esforço (dias)</th>
 								<th>Sprint</th>
 								
 							</tr>
@@ -110,6 +111,7 @@
 									</td>
 									<td>${uc.usecase}</td>
 									<td>${uc.prioridade}</td>
+									<td>${uc.dias}</td>
 									<td>
 										<a id="backlog${uc.id}" onclick="sendUC(${uc.id})" href="#" class="py-1 px-2 badge badge-pill badge-info">Send ></a>
 									</td>
@@ -118,7 +120,7 @@
 						</tbody>
 					</table>
 			</div>
-			<div class="col-7 ml-auto p-0">
+			<div class="col-8 ml-auto p-0">
 				<div>
 					<span>Sprints</span>
 					<a href='<c:url context="/" value="/${projeto.id}/sprint/add"> </c:url>' class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</a>
@@ -133,21 +135,24 @@
 				<div id="quadro" class="h-100 border">
 					<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
 						<div class="sprints" id="sprint${sprint.id}" >
-							<div class="input-group input-group-sm  align-items-center my-3 p-2">
-								<h4 class="mr-auto">Sprint</h4>
+							<div class="input-group input-group-sm  align-items-left my-3 p-0">
+								    <div class="input-group-prepend col-3 pl-0">
+                                        <label class="input-group-text" for="sprintStatus">Status</label>
+                                        <input id="duracao${sprint.id}" class="form-control form-control-sm" name="sprintStatus" type="text" value="${sprint.sprintStatus.descricao}" readonly>
+                                    </div>
 								  	<div class="input-group-prepend col-2">
 										<label class="input-group-text " for="duracao">Dias</label>
 										<input onchange="calcFim()" id="duracao${sprint.id}" class="form-control form-control-sm" name="duracao" type="number" min="1" step="1" value="${sprint.duracao}">
 								  	</div>
-								  	<div class="input-group-prepend col-auto">
-										<label class="input-group-text " for="inicio">Início</label>
-										<input id="inicio${sprint.id}" onchange="calcFim()" class="form-control form-control-sm" name="inicio" type="date" value="">
+								  	<div class="input-group-prepend col-3">
+										<label class="input-group-text" for="inicio">Início</label>
+										<input id="inicio${sprint.id}" onchange="calcFim()" class="form-control form-control-sm" name="inicio" type="date" value="${sprint.inicio}">
 								  	</div>
-								  	<div class="input-group-prepend col-auto">
+								  	<div class="input-group-prepend col-3">
 										<label class="input-group-text " for="fim">Fim</label>
-										<input id="fim${sprint.id}" class="form-control form-control-sm" name="fim" readonly="readonly" type="date" value="">
+										<input id="fim${sprint.id}" class="form-control form-control-sm" name="fim" readonly="readonly" type="date" value="${sprint.fim}">
 								  	</div>
-								  	<div class="ml-auto p-0 m-0 col-1">
+								  	<div class="ml-auto p-0 m-0 col-auto">
 									  	<button id="salvar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" type="button" >Salvar</button>
 									  	<button id="iniciar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
 										<button id="excluir${sprint.id}" class="btn btn-sm btn-block btn-outline-danger m-0"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>
@@ -159,8 +164,9 @@
 											<th>#</th>
 											<th>Use Case</th>
 											<th>Prioridade</th>
+											<th>Esforço (dias)</th>
 											<th>Status</th>
-											<th>Remove</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -171,9 +177,10 @@
 												</td>
 												<td>${casodeuso.usecase}</td>
 												<td>${casodeuso.prioridade}</td>
+												<td>${casodeuso.dias}</td>
 												<td>${casodeuso.useCaseStatus.getDescricao()}</td>
 												<td>
-													<a id="uctobacklog" href='<c:url value="/usecase/tobacklog/${casodeuso.id}" context="/"></c:url>' class="w-50 h-50 btn btn-outline-danger btn-sm">X</a>
+													<a id="uctobacklog" href='<c:url value="/usecase/tobacklog/${casodeuso.id}" context="/"></c:url>' class="h-50 btn btn-outline-danger btn-sm px-2">X</a>
 												</td>
 											</tr>
 										</c:forEach>

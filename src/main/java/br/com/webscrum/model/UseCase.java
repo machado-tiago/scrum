@@ -24,6 +24,8 @@ public class UseCase {
 	private File diagramaSequencia;
 	private String prioridade;
 	private String ator;
+	private float dias;
+
 	@Enumerated(EnumType.STRING)
 	private UseCaseStatus useCaseStatus;
 	@ManyToOne
@@ -118,8 +120,8 @@ public class UseCase {
 
 	@Override
 	public String toString() {
-		return String.format("UseCase: [id=%s, usecase=%s, prioridade=%s, ator=%s, status=%s, requirements=%s]", id,
-				usecase, prioridade, ator, useCaseStatus, requirements);
+		return String.format("UseCase: [id=%s, usecase=%s, prioridade=%s, ator=%s, status=%s, requirements=%s, dias=%s]", id,
+				usecase, prioridade, ator, useCaseStatus, requirements, dias);
 	}
 
 	@Override
@@ -147,4 +149,11 @@ public class UseCase {
 		return true;
 	}
 
+	public float getDias() {
+		return dias;
+	}
+
+	public void setDias(float dias) {
+		this.dias = dias;
+	}
 }

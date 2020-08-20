@@ -1,14 +1,12 @@
 package br.com.webscrum.model;
 
-import java.util.List;
+import br.com.webscrum.service.SprintService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import java.time.LocalDate;
+import java.util.*;
+
+import javax.persistence.*;
 
 @Entity
 public class Sprint {
@@ -18,11 +16,16 @@ public class Sprint {
 	private String descricao;
 	private int duracao;
 	private boolean atual;
+	private LocalDate inicio;
+	private LocalDate fim;
+
 	@ManyToOne
 	@JoinColumn(name = "projeto_id")
 	private Projeto projeto;
 	@OneToMany(mappedBy = "sprint")
 	private List<UseCase> usecases;
+	@Enumerated(EnumType.STRING)
+	private SprintStatus sprintStatus;
 
 	private static int SPRINT_DURATION = 21;
 	
@@ -34,8 +37,32 @@ public class Sprint {
 		SPRINT_DURATION = duration;
 	}
 
+
 	public Sprint() {
 		this.setDuracao(getSPRINT_DURATION());
+		this.setSprintStatus(SprintStatus.PLANEJAMENTO);
+	}
+
+	public Sprint(SprintService sprintService) {
+		this.setDuracao(getSPRINT_DURATION());
+		this.setSprintStatus(SprintStatus.PLANEJAMENTO);
+		this.setInicio(sprintService.getPrevious(this).getFim().plusDays(1));
+	}
+
+	public LocalDate getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(LocalDate inicio) {
+		this.inicio = inicio;
+	}
+
+	public LocalDate getFim() {
+		return fim;
+	}
+
+	public void setFim(LocalDate fim) {
+		this.fim = fim;
 	}
 
 	public Projeto getProjeto() {
@@ -80,6 +107,13 @@ public class Sprint {
 		this.descricao = descricao;
 	}
 
+	public SprintStatus getSprintStatus() {
+		return sprintStatus;
+	}
+
+	public void setSprintStatus(SprintStatus sprintStatus) {
+		this.sprintStatus = sprintStatus;
+	}
 
 	public Integer getId() {
 		return id;

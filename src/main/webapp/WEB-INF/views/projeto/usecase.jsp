@@ -29,32 +29,36 @@
 	             </div>
 
 				<div class="row">
-	             <div class="form-group col-4">
-	               <label for="ator">Ator</label>
-	               <input value="${usecase.ator}" type="text" name="ator" id="ator" class="form-control" required>
-	             </div>
-	
-	             <div class="form-group col-4">
-	               <label for="prioridade">Prioridade</label>
-	               <select name="prioridade" id="prioridade" class="form-control">
-	               	<option selected="selected" hidden="true"> ${usecase.prioridade} </option>
-	               	<option>Baixa</option>
-	               	<option>Média</option>
-	               	<option>Alta</option>
-	               	<option>Muito Alta</option>
-	               </select>
-	             </div>
-	             
-				
-	              <div class="form-group col-4">
-	               <label for="usecasestatus">Status</label>
-	               <select name="usecasestatus" id="stausecasestatus" class="form-control">
-	               	<option selected="selected" hidden="true" value="${usecase.useCaseStatus}"> ${usecase.getUseCaseStatus().ordinal()+1} - ${usecase.useCaseStatus.descricao} </option>
-	               	<c:forEach var="item" items="${usecasestatus}" varStatus="loop" >
-	               		<option value="${item}"> ${loop.count} - ${item.descricao}</option>
-	               	</c:forEach>
-	               </select>
-	             </div>
+                     <div class="form-group col-3">
+                       <label for="ator">Ator</label>
+                       <input value="${usecase.ator}" type="text" name="ator" id="ator" class="form-control" required>
+                     </div>
+
+                     <div class="form-group col-3">
+                       <label for="prioridade">Prioridade</label>
+                       <select name="prioridade" id="prioridade" class="form-control">
+                            <option selected="selected" hidden="true"> ${usecase.prioridade} </option>
+                            <option>Baixa</option>
+                            <option>Média</option>
+                            <option>Alta</option>
+                            <option>Muito Alta</option>
+                       </select>
+                     </div>
+
+                     <div class="form-group col-3">
+                        <label for="dias">Esforço (dias)</label>
+                        <input value="${usecase.dias}" type="number" name="dias" id="dias" min="0.5" step="0.5" class="form-control" required>
+                     </div>
+
+                      <div class="form-group col-3">
+                           <label for="usecasestatus">Status</label>
+                           <select name="usecasestatus" id="stausecasestatus" class="form-control" >
+                                <option selected="selected" hidden="true" value="${usecase.useCaseStatus}"> ${usecase.getUseCaseStatus().ordinal()+1} - ${usecase.useCaseStatus.descricao} </option>
+                                <c:forEach var="item" items="${usecasestatus}" varStatus="loop" >
+                                    <option value="${item}"> ${loop.count} - ${item.descricao}</option>
+                                </c:forEach>
+                           </select>
+                      </div>
 				</div>
 	          	<div class="form-group">
 	                <label for="userstory">User Story</label>

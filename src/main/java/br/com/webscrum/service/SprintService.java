@@ -35,6 +35,10 @@ public class SprintService {
 		return sprint;
 	}
 
+	public Sprint getPrevious(Sprint sprint){
+		return sprintRepository.findPrevious(sprint.getId());
+	}
+
 	public Sprint merge(Sprint sprint) {
 		return sprintRepository.saveAndFlush(sprint);
 	}
