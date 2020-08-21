@@ -62,7 +62,7 @@ public class ProjetoController {
 		Projeto projeto = projetoService.get(Integer.valueOf(id));
 		projetoForm.converter(projeto);
 		System.out.println(projeto.toString());
-		//projetoService.merge(projeto);
+		projetoService.merge(projeto);
 		return "redirect:"  + projeto.getId();
 	}
 
