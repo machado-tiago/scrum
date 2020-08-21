@@ -1,5 +1,6 @@
 package br.com.webscrum.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ public class Projeto {
 	@OneToMany(mappedBy = "projeto")
 	private List<Sprint> sprints;
 	private Integer sprintAtual;
+	private LocalDate inicioSprints;
 	private String cliente;
 	// ####-----INCLUIR MODELO DE DOMÍNIO/DIAGRAMA DE CLASSE COMO ATRIBUTOS-----###
 	
@@ -37,6 +39,7 @@ public class Projeto {
 		this.projectStatus = ProjectStatus.INITIATION;
 		this.sprintAtual = 0;
 	}
+
 
 	public ProjectStatus getProjectStatus() {
 		return projectStatus;
@@ -66,6 +69,14 @@ public class Projeto {
 	public Integer getSprintAtualIndex() {
 		return this.sprintAtual;
 
+	}
+
+	public LocalDate getInicioSprints() {
+		return inicioSprints;
+	}
+
+	public void setInicioSprints(LocalDate inicioSprints) {
+		this.inicioSprints = inicioSprints;
 	}
 
 	public Sprint getSprintAtual() {

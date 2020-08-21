@@ -146,7 +146,7 @@
 								  	</div>
 								  	<div class="input-group-prepend col-3">
 										<label class="input-group-text" for="inicio">Início</label>
-										<input id="inicio${sprint.id}" onchange="calcFim()" class="form-control form-control-sm" name="inicio" type="date" value="${sprint.inicio}">
+										<input id="inicio${sprint.id}" onchange="calcFim()" class="form-control form-control-sm" name="inicio" type="date" readonly="readonly" value="${sprint.inicio}">
 								  	</div>
 								  	<div class="input-group-prepend col-3">
 										<label class="input-group-text " for="fim">Fim</label>

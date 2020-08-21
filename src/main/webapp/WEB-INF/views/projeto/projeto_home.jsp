@@ -10,7 +10,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <script>
+        function change(){
+                    document.getElementById("cancelar").style.display="block";
+                    document.getElementById("salvar").style.display="block";
+        }
+    </script>
 
 <title>Scrum App</title>
 </head>
@@ -23,44 +28,54 @@
 				${mensagemForm}
 			</div>
 		</c:if>
-
-		<div class="row  align-items-center py-3">
-			<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
-			<div class="ml-auto col-6">
-				<div class="d-flex justify-content-end  align-items-center">
-					<div class="ml-auto">
-						<div class="text-center"><strong>Sprint Atual: </strong></div>	
-						<p class="m-0 text-center">${projeto.getSprintAtualIndex()}</p>
+		<form action="" method="POST" action="<c:url value="/projeto/${projeto.id}" context="/"/>">
+			<div class="row align-items-center py-3">
+				<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
+				<div class="ml-auto col-6">
+					<div class="d-flex justify-content-end  align-items-center">
+						<div class="ml-auto">
+							<div class="text-center"><strong>Sprint Atual: </strong></div>	
+							<p class="m-0 text-center">${projeto.getSprintAtualIndex()}</p>
+						</div>
+						
+						<div class="ml-5">
+							<strong>Status: </strong>
+							<p class="m-0">${projeto.projectStatus.descricao}</p>
+						</div>
+						
 					</div>
-					
-					<div class="ml-5">
-						<strong>Status: </strong>
-						<p class="m-0">${projeto.projectStatus.descricao}</p>
-					</div>
-					
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-9 form-group">
-				<label for="objetivo">Objetivos</label>
-				<textarea rows="7" id="objetivo" name="objetivo" type="text" class="form-control" readonly >${projeto.objetivo}</textarea>
+
+			<div class="row">		
+				<div class="col-9 form-group">
+					<label for="objetivo">Objetivos</label>
+					<textarea rows="7" id="objetivo" onchange="change()" name="objetivo" type="text" class="form-control" >${projeto.objetivo}</textarea>
+				</div>
+				<div class="col-3 form-group">
+					<label for="colaboradores">Equipe</label>
+					<select multiple size="9" onchange="change()" class="form-control" id="colaboradores" name="colaboradores">
+						<c:forEach var="colab" items="${projeto.colaboradores}">
+							<option>${colab.nome}</option>
+						</c:forEach>
+					</select>		
+				</div>
 			</div>
-			<div class="col-3 form-group">
-				<label for="colaboradores">Equipe</label>
-				<select multiple size="9" readonly class="form-control" id="colaboradores" name="colaboradores">
-					<c:forEach var="colab" items="${projeto.colaboradores}">
-						<option>${colab.nome}</option>
-					</c:forEach>
-				</select>		
+
+			<div class="row">
+				<div class="col-3 form-group">
+					<label for="inicioSprints">Início dos Sprints</label>
+					<input id="inicioSprints" onchange="change()" class="form-control form-control-sm" name="inicioSprints" type="date" value="${projeto.inicioSprints}">
+				</div>
 			</div>
-		</div>		
-		
-		<div class="row align-items-start p-3">
-			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Planning</a>
-			<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Atual</a>
-			<a href="<c:url value="/projeto/edit/${projeto.id}" context="/" />" class="badge badge-secondary p-2">Editar</a>
-		</div>	
+
+			<div class="row align-items-start p-3">
+				<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Planning</a>
+				<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Atual</a>
+				<a id="cancelar" style="display: none;" class="badge badge-danger p-2 ml-auto mr-2" href="<c:url value="/projeto/${projeto.id}" context="/" />">Cancelar</a>
+				<input type="submit" id="salvar" style="display:none;" class="badge badge-primary p-2" value="Salvar" />
+			</div>	
+		</form>
 	</section>
 	
 		

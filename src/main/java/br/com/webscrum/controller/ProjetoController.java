@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.webscrum.controller.ProjetoDto.ProjetoForm;
 import br.com.webscrum.model.Projeto;
 import br.com.webscrum.service.ProjetoService;
 import br.com.webscrum.service.SprintService;
@@ -54,6 +55,15 @@ public class ProjetoController {
 		model.addAttribute("projeto", projeto);
 		System.out.println(projeto.toString());
 		return "projeto/projeto_home";
+	}
+
+	@PostMapping(value = "/{id}")
+	public String atualizar(@PathVariable("id") String id, ProjetoForm projetoForm){
+		Projeto projeto = projetoService.get(Integer.valueOf(id));
+		projetoForm.converter(projeto);
+		System.out.println(projeto.toString());
+		//projetoService.merge(projeto);
+		return "redirect:"  + projeto.getId();
 	}
 
 	@GetMapping(value = "/planning/{id}")
