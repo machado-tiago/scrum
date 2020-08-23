@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigSpringBoot<scrum>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.webscrum.ConfigSpringBoot",
+            "projectName": "scrum",
+            "args": "-XX:+ShowCodeDetailsInExceptionMessages"
+        }
+    ]
+}

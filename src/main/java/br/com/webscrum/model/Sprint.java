@@ -91,7 +91,7 @@ public class Sprint {
 		this.atual = atual;
 	}
 
-	public double getDuracao() {
+	public int getDuracao() {
 		return duracao;
 	}
 
@@ -121,6 +121,10 @@ public class Sprint {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public void fimCalc(){
+		this.setFim(this.getInicio().plusDays(this.getDuracao()-1));
 	}
 
 	@Override

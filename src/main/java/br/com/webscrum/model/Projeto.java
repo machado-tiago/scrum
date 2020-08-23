@@ -214,5 +214,19 @@ public class Projeto {
 		return true;
 	}
 
+	
+	public void inicioRefresh(LocalDate inicio) {
+		
+		for (int i = 1; i < this.getSprints().size(); i++) {
+			Sprint sprint = this.getSprints().get(i);
+			if (i==1) {
+				sprint.setInicio(inicio);
+			}else{
+				sprint.setInicio(sprints.get(i-1).getFim().plusDays(1));
+			}
+			sprint.fimCalc();
+		}
+	}
+
 
 }

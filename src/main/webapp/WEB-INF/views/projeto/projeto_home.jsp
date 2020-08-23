@@ -12,8 +12,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script>
         function change(){
-                    document.getElementById("cancelar").style.display="block";
-                    document.getElementById("salvar").style.display="block";
+			document.getElementById("cancelar").style.display="block";
+			document.getElementById("salvar").style.display="block";
         }
     </script>
 
@@ -28,7 +28,7 @@
 				${mensagemForm}
 			</div>
 		</c:if>
-		<form action="" method="POST" action="<c:url value="/projeto/${projeto.id}" context="/"/>">
+		<form method="POST" action="<c:url value="/projeto/${projeto.id}" context="/"/>">
 			<div class="row align-items-center py-3">
 				<h3 class="col-4  my-3">Projeto - ${projeto.nome}</h3>
 				<div class="ml-auto col-6">
@@ -72,8 +72,8 @@
 			<div class="row align-items-start p-3">
 				<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Planning</a>
 				<a href="<c:url value="/projeto/planning/${projeto.id}" context="/" />" class="badge badge-secondary p-2 mr-2">Sprint Atual</a>
-				<a id="cancelar" style="display: none;" class="badge badge-danger p-2 ml-auto mr-2" href="<c:url value="/projeto/${projeto.id}" context="/" />">Cancelar</a>
-				<input type="submit" id="salvar" style="display:none;" class="badge badge-primary p-2" value="Salvar" />
+				<a id="cancelar" style="display: none;" class="btn btn-secondary btn-sm p-2 ml-auto mr-2" href="<c:url value="/projeto/${projeto.id}" context="/" />">Cancelar</a>
+				<input type="submit" id="salvar" style="display:none;" class="btn btn-primary btn-sm p-2" value="Salvar" />
 			</div>	
 		</form>
 	</section>
