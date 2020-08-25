@@ -70,7 +70,7 @@ public class UseCaseController {
 	}
 
 	@GetMapping("/{uc_id}/tosprint/{sprint_id}")
-	public String sendUC(@PathVariable("uc_id") String uc_id, @PathVariable("sprint_id") String sprint_id,
+	public String sendUC(@PathVariable("uc_id") String uc_id, @PathVariable("sprint_id") Integer sprint_id,
 			Model model, RedirectAttributes attributes) {
 		Sprint sprint = sprintService.get(sprint_id);
 		UseCase usecase = usecaseService.get(uc_id);

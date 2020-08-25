@@ -16,5 +16,4 @@ public enum SprintStatus {
 		return descricao;
 	}
 
-
 }

@@ -228,5 +228,12 @@ public class Projeto {
 		}
 	}
 
+	public void sucessorRefresh(Sprint sprintChange) {	
+		Integer ind = Integer.valueOf(this.sprints.indexOf(sprintChange));
+		for (int i = ind; i < this.getSprints().size(); i++) {
+			sprints.get(i).setInicio(this.sprints.get(i-1).getFim().plusDays(1));
+			sprints.get(i).fimCalc();
+		}
+	}
 
 }

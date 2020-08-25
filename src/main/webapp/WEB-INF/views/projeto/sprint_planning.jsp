@@ -113,7 +113,7 @@
 									<td>${uc.prioridade}</td>
 									<td>${uc.dias}</td>
 									<td>
-										<a id="backlog${uc.id}" onclick="sendUC(${uc.id})" href="#" class="py-1 px-2 badge badge-pill badge-info">Send ></a>
+										<a id="backlog${uc.id}" onclick="sendUC(${uc.id})" href="#" class="py-1 px-2 badge badge-pill badge-info">Send</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -123,7 +123,7 @@
 			<div class="col-8 ml-auto p-0">
 				<div>
 					<span>Sprints</span>
-					<a href='<c:url context="/" value="/${projeto.id}/sprint/add"> </c:url>' class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</a>
+					<a href='<c:url context="/" value="/projeto/${projeto.id}/sprint/add"> </c:url>' class="btn badge badge-pill badge-primary px-3 py-1 m-2">+Add</a>
 				</div>
 					<nav class="d-flex flex-wrap menu-botoes">
 						<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
@@ -134,11 +134,13 @@
 					</nav>
 				<div id="quadro" class="h-100 border">
 					<c:forEach var="sprint" items="${projeto.sprints}" varStatus="loop" begin="1" >
-						<div class="sprints" id="sprint${sprint.id}" >
-							<div class="input-group input-group-sm  align-items-left my-3 p-0">
+						<form  method="POST" action="../../projeto/${projeto.id}/sprint/${sprint.id}"  >
+							<div class="sprints" id="sprint${sprint.id}">
+								<div class="input-group input-group-sm  align-items-left my-3 p-0">
+
 								    <div class="input-group-prepend col-3 pl-0">
                                         <label class="input-group-text" for="sprintStatus">Status</label>
-                                        <input id="duracao${sprint.id}" class="form-control form-control-sm" name="sprintStatus" type="text" value="${sprint.sprintStatus.descricao}" readonly>
+                                        <input id="sprintStatus${sprint.id}" class="form-control form-control-sm" name="sprintStatus" type="text" value="${sprint.sprintStatus.descricao}" readonly>
                                     </div>
 								  	<div class="input-group-prepend col-2">
 										<label class="input-group-text " for="duracao">Dias</label>
@@ -152,12 +154,14 @@
 										<label class="input-group-text " for="fim">Fim</label>
 										<input id="fim${sprint.id}" class="form-control form-control-sm" name="fim" readonly="readonly" type="date" value="${sprint.fim}">
 								  	</div>
-								  	<div class="ml-auto p-0 m-0 col-auto">
-									  	<button id="salvar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" type="button" >Salvar</button>
-									  	<button id="iniciar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
-										<button id="excluir${sprint.id}" class="btn btn-sm btn-block btn-outline-danger m-0"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>
-								  	</div>
+									
+									<div class="ml-auto p-0 m-0 col-auto">									
+										<input id="salvar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" type="submit" value="Salvar"/>
+										<button id="iniciar${sprint.id}" style="display: none;" class="btn btn-block btn-sm btn-primary m-0" data-toggle="modal" data-target="#sp_exclude-modal" type="button">Iniciar</button>
+										<button id="excluir${sprint.id}" class="btn btn-sm btn-block btn-outline-danger m-0"  data-toggle="modal" data-target="#sp_exclude-modal" type="button">Excluir</button>										
+									</div>
 								</div>
+								
 			 					<table class="table table-hover table-sm">
 									<thead>
 										<tr>
@@ -186,7 +190,8 @@
 										</c:forEach>
 									</tbody>
 								</table>
-						 </div>	
+						 	</div>	
+						</form>
 			 		</c:forEach>
 				</div>
 			</div>	
@@ -207,47 +212,45 @@
 	      </div>
 	      <div class="modal-body">
 	        <div class="card-body">
-			            <form action="<c:url value="/usecase/add" context="/" />" method="post" name="addusecase">
-							<input hidden="true" name="id" value="${projeto.id}"></input>
-
-
-			              <div class="form-group">
-			                <label for="usecase">Use Case</label>
-			                <input type="text" name="usecase" id="usecase" class="form-control" placeholder="nome do caso de uso" required>
-			              </div>
-			             
-			              <div class="form-group">
-			                <label for="ator">Ator</label>
-			                <input type="text" name="ator" id="ator" class="form-control" placeholder="ator" required>
-			              </div>
-			              <div class="form-group">
-			                <label for="prioridade">Prioridade</label>
-			                <select name="prioridade" id="prioridade" class="form-control">
-			                	<option selected="selected" hidden="true" value=""> -- selecione uma opção -- </option>
-			                	<option>Baixa</option>
-			                	<option>Média</option>
-			                	<option>Alta</option>
-			                	<option>Muito Alta</option>
-			                </select>
-			              </div>
-		
-		            	<div class="form-group">
-				                <label for="userstory">User Story</label>
-				                <textarea rows="7" name="userstory" id="userstory" class="form-control" placeholder="descreva aqui a história do usuário" required></textarea>
-			              </div>
-			              
-			             <div class="form-group">
-			                <label for="fluxoAlternativo">Fluxo Alternativo</label>
-			                <textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control" placeholder="descreva o fluxo alternativo"></textarea>
-			             </div>
-			              
-						  <br>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					        <button type="submit" class="btn btn-primary">Salvar</button>
-					      </div>
-			            </form>
-			        </div>
+					<form action="<c:url value="/usecase/add" context="/" />" method="post" name="addusecase">
+						<input hidden="true" name="id" value="${projeto.id}"></input>
+						<div class="form-group">
+							<label for="usecase">Use Case</label>
+							<input type="text" name="usecase" id="usecase" class="form-control" placeholder="nome do caso de uso" required>
+						</div>
+						
+						<div class="form-group">
+							<label for="ator">Ator</label>
+							<input type="text" name="ator" id="ator" class="form-control" placeholder="ator" required>
+						</div>
+						<div class="form-group">
+							<label for="prioridade">Prioridade</label>
+							<select name="prioridade" id="prioridade" class="form-control">
+								<option selected="selected" hidden="true" value=""> -- selecione uma opção -- </option>
+								<option>Baixa</option>
+								<option>Média</option>
+								<option>Alta</option>
+								<option>Muito Alta</option>
+							</select>
+						</div>
+					</form>  	
+					<div class="form-group">
+							<label for="userstory">User Story</label>
+							<textarea rows="7" name="userstory" id="userstory" class="form-control" placeholder="descreva aqui a história do usuário" required></textarea>
+						</div>
+						
+						<div class="form-group">
+						<label for="fluxoAlternativo">Fluxo Alternativo</label>
+						<textarea rows="4" name="fluxoAlternativo" id="fluxoAlternativo" class="form-control" placeholder="descreva o fluxo alternativo"></textarea>
+						</div>
+						
+						<br>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
 	      </div>
 	    </div>
 	  </div>
